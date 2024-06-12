@@ -1,0 +1,825 @@
+{
+    "@platforms": ["android", "iPhone", "iPad"],
+    "id": "H56CE7ABC",/*应用的标识，创建应用时自动生成，勿手动修改*/
+    "name": "111",/*应用名称，程序桌面图标名称*/
+    "version": {
+        "name": "1.0",/*应用版本名称*/
+        "code": ""
+    },
+    "description": "",/*应用描述信息*/
+    "icons": {
+        "72": "icon.png"
+    },
+    "launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "developer": {
+        "name": "",/*开发者名称*/
+        "email": "",/*开发者邮箱地址*/
+        "url": ""/*开发者个人主页地址*/
+    },
+    "permissions": {
+        "Messaging":{
+        	"description": "短彩邮件插件"
+        },
+        "Cache": {
+            "description": "管理应用缓存"
+        },
+        "Console": {
+            "description": "跟踪调试输出日志"
+        },
+        "Contacts": {
+            "description": "访问系统联系人信息"
+        },
+        "Events": {
+            "description": "应用扩展事件"
+        },
+        "Maps": {
+            "description": "管理地图插件"
+        },
+        "Speech": {
+            "description": "管理语音识别插件"
+        }
+    },
+    "plus": {
+        "splashscreen": {
+            "autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting": true/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+        },
+        "popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
+        "runmode": "normal",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+        "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+        "distribute": {
+            "apple": {
+                "appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+                "mobileprovision": "",/*iOS应用打包配置文件*/
+                "password": "",/*iOS应用打包个人证书导入密码*/
+                "p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+                "devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+                "frameworks":[
+                ]/*调用Native.js调用原生Objective-c API需要引用的FrameWork，如需调用GameCenter，则添加"GameKit.framework"*/
+            },
+            "google": {
+                "packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+                "keystore": "",/*Android应用打包使用的密钥库文件*/
+                "password": "",/*Android应用打包使用密钥库中证书的密码*/
+                "aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+               "permissions": ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"]
+				/*使用Native.js调用原生安卓API需要使用到的系统权限*/
+            },
+            "orientation": [
+                "portrait-primary"
+            ],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+            "icons": {
+                "ios": {
+                    "prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+                    "auto": "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+                    "iphone": {
+                        "normal": "", /*iPhone3/3GS程序图标，分辨率：57x57*/
+                        "retina": "", /*iPhone4程序图标，分辨率：114x114*/
+                        "retina7": "", /*iPhone4S/5/6程序图标，分辨率：120x120*/
+			"retina8": "", /*iPhone6 Plus程序图标，分辨率：180x180*/
+                        "spotlight-normal": "", /*iPhone3/3GS Spotlight搜索程序图标，分辨率：29x29*/
+                        "spotlight-retina": "", /*iPhone4 Spotlight搜索程序图标，分辨率：58x58*/
+                        "spotlight-retina7": "", /*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal": "", /*iPhone4设置页面程序图标，分辨率：29x29*/
+                        "settings-retina": "", /*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
+			"settings-retina8": "" /*iPhone6Plus设置页面程序图标，分辨率：87x87*/
+                    },
+                    "ipad": {
+                        "normal": "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+                        "retina": "", /*iPad高分屏程序图标，分辨率：144x144*/
+                        "normal7": "", /*iPad iOS7程序图标，分辨率：76x76*/
+                        "retina7": "", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+                        "spotlight-normal": "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+                        "spotlight-retina": "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+                        "spotlight-normal7": "",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+                        "spotlight-retina7": "",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal": "",/*iPad设置页面程序图标，分辨率：29x29*/
+                        "settings-retina": "" /*iPad高分屏设置页面程序图标，分辨率：58x58*/
+                    }
+                },
+                "android": {
+                    "mdpi": "", /*普通屏程序图标，分辨率：48x48*/
+                    "ldpi": "", /*大屏程序图标，分辨率：48x48*/
+                    "hdpi": "", /*高分屏程序图标，分辨率：72x72*/
+                    "xhdpi": "",/*720P高分屏程序图标，分辨率：96x96*/
+                    "xxhdpi": ""/*1080P 高分屏程序图标，分辨率：144x144*/
+                }
+            },
+            "splashscreen": {
+                "ios": {
+                    "iphone": {
+                        "default": "", /*iPhone3启动图片选，分辨率：320x480*/
+                        "retina35": "",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+                        "retina40": "",/*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
+                        "retina47": "",/*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
+                        "retina55": "",/*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
+                        "retina55l": ""/*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
+                    },
+                    "ipad": {
+                        "portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
+                        "portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+                        "landscape": "", /*iPad横屏启动图片，分辨率：1024x748*/
+                        "landscape-retina": "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+                        "portrait7": "", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+                        "portrait-retina7": "",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+                        "landscape7": "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+                        "landscape-retina7": ""/*iPad iOS7高分屏横屏启动图片，分辨率：2048x1536*/
+                    }
+                },
+                "android": {
+                    "mdpi": "", /*普通屏启动图片，分辨率：240x282*/
+                    "ldpi": "", /*大屏启动图片，分辨率：320x442*/
+                    "hdpi": "", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi": "", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi": ""/*1080P高分屏启动图片，分辨率：1080x1882*/
+                }
+            }
+        }
+    },
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [
+					"lib/jquery-ui/1.9.1/jquery-ui.min.js",
+					"lib/jquery/1.9.1/jquery.min.js",
+					"lib/Hui-iconfont/1.0.8/iconfont.min.css",
+					"用户注册.html",
+					"lib/jquery.SuperSlide/2.1.1/jquery.SuperSlide.min.js",
+					"lib/jquery.validation/1.14.0/jquery.validate.min.js",
+					"lib/jquery.validation/1.14.0/messages_zh.min.js",
+					"img/3_54964_361091c0dfce889.jpg",
+					"lib/jquery.validation/1.14.0/validate-methods.js",
+					"img/TIM图片20180806154530.png",
+					"css/hui.css",
+					"js/hui.js"
+				],
+				"refer": [
+					"thzc.html",
+					"yhzc.html",
+					"zhuye.html",
+					"my.html",
+					"zjjm.html"
+				],
+				"priority": 0
+			},
+			"yhzc.html": {
+				"resources": [
+					"lib/jquery-ui/1.9.1/jquery-ui.min.js",
+					"lib/jquery.SuperSlide/2.1.1/jquery.SuperSlide.min.js",
+					"lib/jquery.validation/1.14.0/jquery.validate.min.js",
+					"lib/jquery.validation/1.14.0/messages_zh.min.js",
+					"img/3_54964_361091c0dfce889.jpg",
+					"lib/jquery/1.9.1/jquery.min.js",
+					"img/fanhui.png",
+					"lib/Hui-iconfont/1.0.8/iconfont.min.css",
+					"lib/jquery.validation/1.14.0/validate-methods.js"
+				],
+				"refer": [
+					"index.html",
+					"zjzc.html"
+				],
+				"priority": 0
+			},
+			"zjzc.html": {
+				"resources": [
+					"lib/jquery-ui/1.9.1/jquery-ui.min.js",
+					"lib/jquery.SuperSlide/2.1.1/jquery.SuperSlide.min.js",
+					"lib/jquery.validation/1.14.0/jquery.validate.min.js",
+					"lib/jquery.validation/1.14.0/messages_zh.min.js",
+					"img/3_54964_361091c0dfce889.jpg",
+					"lib/jquery/1.9.1/jquery.min.js",
+					"img/fanhui.png",
+					"lib/Hui-iconfont/1.0.8/iconfont.min.css",
+					"lib/jquery.validation/1.14.0/validate-methods.js"
+				],
+				"refer": [
+					"yhzc.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"my.html": {
+				"resources": [],
+				"refer": [
+					"setting.html",
+					"infomation1.html",
+					"zjxx.html",
+					"tizhijiance.html",
+					"reliangjisuan.html",
+					"shanshidapei.html",
+					"news.html",
+					"shoucang.html",
+					"zhoubian.html",
+					"zjsousuo.html"
+				],
+				"priority": 0
+			},
+			"setting.html": {
+				"resources": [],
+				"refer": [
+					"my.html",
+					"index.html",
+					"popovers.html"
+				],
+				"priority": 0
+			},
+			"infomation1.html": {
+				"resources": [],
+				"refer": [
+					"my.html"
+				],
+				"priority": 0
+			},
+			"zjxx.html": {
+				"resources": [],
+				"refer": [
+					"im-chat.html"
+				],
+				"priority": 0
+			},
+			"zjjm.html": {
+				"resources": [],
+				"refer": [
+					"im-chatzj.html",
+					"setting2.html"
+				],
+				"priority": 0
+			},
+			"setting2.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"tizhijiance.html": {
+				"resources": [],
+				"refer": [
+					"my.html"
+				],
+				"priority": 0
+			},
+			"reliangjisuan.html": {
+				"resources": [],
+				"refer": [
+					"my.html"
+				],
+				"priority": 0
+			},
+			"shanshidapei.html": {
+				"resources": [],
+				"refer": [
+					"my.html"
+				],
+				"priority": 0
+			},
+			"shoucang.html": {
+				"resources": [],
+				"refer": [
+					"news2.html"
+				],
+				"priority": 0
+			},
+			"popovers.html": {
+				"resources": [],
+				"refer": [
+					"setting.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"static/h-ui/css/H-ui.ie.css",
+				"lib/jquery/1.9.1/jquery.js",
+				"lib/Swiper/3.4.2/demos/27-jquery.html",
+				"static/h-ui/src/js/jQuery.Huihover.js",
+				"static/h-ui/src/images/face/QQ/7.gif",
+				"static/h-ui/src/js/Bootstrap.button.js",
+				"static/h-ui/src/images/face/QQ/70.gif",
+				"static/h-ui/src/js/jQuery.Huifold.js",
+				"static/h-ui/images/face/QQ/73.gif",
+				"static/h-ui/images/face/QQ/92.gif",
+				"static/h-ui/src/images/dataTable/sort_asc.png",
+				"static/h-ui/src/images/face/QQ/77.gif",
+				"lib/Swiper/3.4.2/js/swiper.min.js",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/b-5.jpg",
+				"lib/Swiper/3.4.2/demos/05-slides-per-view.html",
+				"static/h-ui/images/face/QQ/50.gif",
+				"lib/Swiper/3.4.2/demos/36-pagination-fraction.html",
+				"static/h-ui/src/js/Bootstrap.Switch.js",
+				"static/h-ui/src/images/Hui-tags/empty.png",
+				"static/h-ui/src/images/face/QQ/38.gif",
+				"static/h-ui/images/steps/step_bg.png",
+				"static/h-ui/images/iCheck/green.png",
+				"static/h-ui/src/images/face/QQ/74.gif",
+				"lib/Hui-iconfont/1.0.8/iconfont.svg",
+				"static/h-ui/images/face/QQ/95.gif",
+				"static/h-ui/src/images/verticalTab/tabNav_right.png",
+				"static/h-ui/src/images/face/QQ/32.gif",
+				"static/h-ui/src/images/face/QQ/91.gif",
+				"static/h-ui/src/images/face/QQ/0.gif",
+				"lib/My97DatePicker/4.8/skin/whyGreen/img.gif",
+				"static/h-ui/images/face/QQ/2.gif",
+				"static/h-ui/images/star/iconpic-star-S-default.png",
+				"static/h-ui/src/css/jQuery.icheck.css",
+				"static/h-ui/images/face/QQ/55.gif",
+				"static/h-ui/src/images/backdrop.png",
+				"static/h-ui/images/face/QQ/103.gif",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/s-1.jpg",
+				"lib/jquery.SuperSlide/2.1.1/demo/02/images/banner-2.jpg",
+				"static/h-ui/src/images/face/QQ/65.gif",
+				"static/h-ui/images/face/QQ/58.gif",
+				"static/h-ui/images/face/QQ/21.gif",
+				"static/h-ui/images/iCheck/pink@2x.png",
+				"static/h-ui/images/face/QQ/11.gif",
+				"static/h-ui/images/face/QQ/90.gif",
+				"static/h-ui/src/Huitags.html",
+				"static/h-ui/images/iCheck/blue@2x.png",
+				"lib/Swiper/3.4.2/demos/11-nested.html",
+				"static/h-ui/src/images/face/QQ/58.gif",
+				"static/h-ui/src/images/iCheck/purple.png",
+				"static/h-ui/images/face/QQ/57.gif",
+				"static/h-ui/images/iCheck/minimal@2x.png",
+				"lib/Swiper/3.4.2/demos/19-keyboard-control.html",
+				"static/h-ui/src/images/face/QQ/95.gif",
+				"static/h-ui/src/images/acrossTab/unslider-arrow.png",
+				"static/h-ui/src/images/iCheck/yellow.png",
+				"static/h-ui/src/images/face/QQ/30.gif",
+				"static/h-ui/src/images/face/208.gif",
+				"static/h-ui/images/verticalTab/tabNav-hover.png",
+				"lib/Swiper/3.4.2/css/swiper.min.css",
+				"lib/Swiper/3.4.2/demos/04-space-between.html",
+				"lib/waterfall.min.js",
+				"lib/Swiper/3.4.2/demos/33-responsive-breakpoints.html",
+				"static/h-ui/src/images/face/QQ/6.gif",
+				"static/h-ui/src/images/face/QQ/98.gif",
+				"static/h-ui/images/face/QQ/18.gif",
+				"static/h-ui/src/images/face/QQ/54.gif",
+				"static/h-ui/src/images/ucnter/avatar-default.jpg",
+				"static/h-ui/images/ucnter/avatar-default-S.gif",
+				"static/h-ui/src/Huispinner.html",
+				"static/h-ui/images/face/210.gif",
+				"lib/Swiper/3.4.2/demos/34-autoheight.html",
+				"lib/Swiper/3.4.2/demos/38-jquery-ie9-loop.html",
+				"static/h-ui/src/images/ucnter/avatar.png",
+				"lib/Swiper/3.4.2/demos/12-grab-cursor.html",
+				"static/h-ui/src/js/Bootstrap.dropdown.js",
+				"static/h-ui/images/face/QQ/16.gif",
+				"static/h-ui/src/images/face/QQ/102.gif",
+				"static/h-ui/src/js/jQuery.placeholder.js",
+				"static/h-ui/src/images/face/QQ/39.gif",
+				"static/h-ui/src/HuitogglePassword.html",
+				"static/h-ui/images/face/QQ/20.gif",
+				"lib/My97DatePicker/4.8/skin/whyGreen/datepicker.css",
+				"static/h-ui/src/images/validform/iconpic-warning.png",
+				"static/h-ui/images/steps/step_bg-active.png",
+				"static/h-ui/images/iCheck/orange@2x.png",
+				"lib/Hui-iconfont/1.0.8/iconfont.css",
+				"static/h-ui/src/css/H-ui.css",
+				"static/h-ui/images/acrossTab/acrossTab.png",
+				"static/h-ui/src/js/jQuery.onePageNav.js",
+				"lib/Swiper/3.4.2/demos/31-custom-plugin.html",
+				"static/h-ui/images/face/207.gif",
+				"static/h-ui/src/images/face/QQ/19.gif",
+				"static/h-ui/images/face/QQ/67.gif",
+				"lib/Swiper/3.4.2/demos/16-effect-fade.html",
+				"static/h-ui/images/acrossTab/acrossTab-bg.png",
+				"static/h-ui/images/face/QQ/29.gif",
+				"lib/nprogress/0.2.0/nprogress.min.js",
+				"static/h-ui/css/H-ui.min.css",
+				"lib/jquery.SuperSlide/2.1.1/demo/03/images/banner-1.jpg",
+				"static/h-ui/src/images/face/QQ/59.gif",
+				"static/h-ui/images/face/QQ/22.gif",
+				"static/h-ui/images/face/QQ/84.gif",
+				"static/h-ui/src/images/face/QQ/101.gif",
+				"static/h-ui/src/js/jQuery.Huitagsmixed.js",
+				"static/h-ui/images/face/QQ/76.gif",
+				"static/h-ui/images/face/QQ/63.gif",
+				"static/h-ui/src/images/face/QQ/41.gif",
+				"lib/My97DatePicker/4.8/skin/datePicker.gif",
+				"lib/Swiper/3.4.2/demos/09-freemode.html",
+				"static/h-ui/images/face/QQ/42.gif",
+				"static/h-ui/src/images/face/QQ/85.gif",
+				"static/h-ui/src/images/face/QQ/105.gif",
+				"static/h-ui/src/images/star/iconpic-star-S-default.png",
+				"lib/datatables/1.10.0/jquery.dataTables.min.js",
+				"lib/Swiper/3.4.2/demos/37-pagination-progress.html",
+				"static/h-ui/css/H-ui.css",
+				"static/h-ui/images/face/QQ/96.gif",
+				"static/h-ui/src/js/jQuery.stickUp.js",
+				"lib/handlebars.js",
+				"static/h-ui/images/iCheck/blue.png",
+				"static/h-ui/src/images/face/QQ/103.gif",
+				"static/h-ui/images/face/QQ/94.gif",
+				"static/h-ui/images/face/QQ/44.gif",
+				"static/h-ui/images/face/QQ/75.gif",
+				"static/h-ui/src/js/jQuery.Huisethome.js",
+				"static/h-ui/src/images/face/QQ/21.gif",
+				"lib/Hui-iconfont/1.0.8/iconfont.ttf",
+				"static/h-ui/src/images/face/QQ/71.gif",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/demo.html",
+				"static/h-ui/src/images/iCheck/blue.png",
+				"static/h-ui/src/images/verticalTab/tabNav_right-hover.png",
+				"static/h-ui/images/ucnter/avatar-default.jpg",
+				"static/h-ui/src/images/face/QQ/8.gif",
+				"static/h-ui/images/face/QQ/77.gif",
+				"static/h-ui/src/images/face/QQ/72.gif",
+				"static/h-ui/images/face/QQ/25.gif",
+				"static/h-ui/images/iCheck/orange.png",
+				"static/h-ui/images/ucnter/noavatar_small.gif",
+				"static/h-ui/src/images/face/QQ/23.gif",
+				"static/h-ui/src/images/face/QQ/22.gif",
+				"static/h-ui/src/images/face/QQ/4.gif",
+				"static/h-ui/src/images/acrossTab/acrossTab-bg.png",
+				"static/h-ui/src/js/jQuery.Huitags.js",
+				"static/h-ui/src/images/face/QQ/88.gif",
+				"lib/My97DatePicker/4.8/skin/twoer/datepicker-dev.css",
+				"static/h-ui/images/iCheck/yellow.png",
+				"static/h-ui/src/images/verticalTab/tabNav-hover.png",
+				"static/h-ui/images/steps/step_arrow.png",
+				"static/h-ui/src/images/face/QQ/81.gif",
+				"static/h-ui/images/face/QQ/33.gif",
+				"static/h-ui/images/iCheck/aero.png",
+				"static/h-ui/images/face/QQ/82.gif",
+				"static/h-ui/src/images/loading-s.gif",
+				"static/h-ui/src/js/jQuery.ColorPicker.js",
+				"static/h-ui/src/images/face/QQ/79.gif",
+				"lib/laypage/1.2/skin/laypage.css",
+				"static/h-ui/images/face/QQ/70.gif",
+				"static/h-ui/src/images/iCheck/green@2x.png",
+				"static/h-ui/images/acrossTab/acrossTab-close.png",
+				"lib/layer/2.4/skin/default/loading-1.gif",
+				"lib/Swiper/3.4.2/demos/06-slides-per-view-auto.html",
+				"static/h-ui/src/images/face/QQ/60.gif",
+				"static/h-ui/images/face/QQ/24.gif",
+				"static/h-ui/images/face/QQ/36.gif",
+				"static/h-ui/images/iCheck/grey.png",
+				"static/h-ui/images/validform/iconpic-error.png",
+				"static/h-ui/src/images/face/QQ/20.gif",
+				"lib/Swiper/3.4.2/demos/30-lazy-load-images.html",
+				"static/h-ui/images/face/QQ/45.gif",
+				"static/h-ui/src/images/face/QQ/94.gif",
+				"lib/respond.min.js",
+				"lib/Swiper/3.4.2/demos/29-custom-pagination.html",
+				"static/h-ui/src/images/face/QQ/9.gif",
+				"lib/Swiper/3.4.2/js/swiper.jquery.js",
+				"static/h-ui/images/face/QQ/10.gif",
+				"static/h-ui/src/images/face/QQ/24.gif",
+				"lib/My97DatePicker/4.8/skin/twoer/datepicker.css",
+				"static/h-ui/src/images/face/QQ/67.gif",
+				"static/h-ui/src/images/icon-arrow.png",
+				"static/h-ui/src/images/face/202.gif",
+				"lib/squid.js",
+				"lib/Hui-iconfont/1.0.8/iconfont.woff",
+				"static/h-ui/images/face/QQ/105.gif",
+				"static/h-ui/src/images/face/QQ/100.gif",
+				"lib/Swiper/3.4.2/demos/32-slideable-menu.html",
+				"lib/jquery.validation/1.14.0/README.md",
+				"lib/layer/2.4/skin/default/loading-0.gif",
+				"static/h-ui/src/images/acrossTab/acrossTab.png",
+				"lib/Swiper/3.4.2/demos/39-zoom.html",
+				"static/h-ui/src/images/dropDown/icon-jt.png",
+				"lib/html5shiv.js",
+				"lib/layer/2.4/skin/default/loading-2.gif",
+				"lib/Swiper/3.4.2/demos/13-scrollbar.html",
+				"static/h-ui/src/images/face/QQ/61.gif",
+				"static/h-ui/images/iCheck/purple@2x.png",
+				"lib/Validform/5.3.2/Validform.js",
+				"lib/My97DatePicker/4.8/lang/en.js",
+				"static/h-ui/src/images/iCheck/pink.png",
+				"static/h-ui/src/images/iCheck/pink@2x.png",
+				"lib/My97DatePicker/4.8/lang/zh-cn.js",
+				"static/h-ui/src/js/jquery.Huimarquee.js",
+				"static/h-ui/images/face/QQ/66.gif",
+				"static/h-ui/src/images/face/QQ/34.gif",
+				"static/h-ui/src/images/face/QQ/57.gif",
+				"static/h-ui/images/iCheck/grey@2x.png",
+				"static/h-ui/src/js/jQuery.Huispinner.js",
+				"static/h-ui/src/images/face/206.gif",
+				"static/h-ui/images/face/QQ/91.gif",
+				"static/h-ui/src/Huitab.html",
+				"static/h-ui/images/iCheck/red.png",
+				"static/h-ui/src/js/jQuery.HuiaddFavorite.js",
+				"lib/Validform/5.3.2/passwordStrength-min.js",
+				"static/h-ui/src/images/face/205.gif",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/s-5.jpg",
+				"static/h-ui/src/images/face/204.gif",
+				"static/h-ui/src/images/validform/iconpic-right.png",
+				"lib/Swiper/3.4.2/demos/38-history.html",
+				"static/h-ui/images/face/QQ/14.gif",
+				"lib/Swiper/3.4.2/demos/20-mousewheel-control.html",
+				"static/h-ui/images/face/QQ/1.gif",
+				"static/h-ui/images/face/QQ/87.gif",
+				"lib/nprogress/0.2.0/nprogress.min.css",
+				"lib/Swiper/3.4.2/demos/28-parallax.html",
+				"lib/nprogress/0.2.0/nprogress.css",
+				"static/h-ui/images/face/QQ/93.gif",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/s-4.jpg",
+				"static/h-ui/images/face/QQ/6.gif",
+				"static/h-ui/images/face/QQ/7.gif",
+				"static/h-ui/images/loading/loading-s.gif",
+				"static/h-ui/images/face/QQ/89.gif",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/s-3.jpg",
+				"static/h-ui/images/jselect/iconpic-arrow-down2.png",
+				"static/h-ui/images/face/QQ/31.gif",
+				"static/h-ui/src/images/face/QQ/92.gif",
+				"static/h-ui/images/face/QQ/4.gif",
+				"static/h-ui/images/dropDown/icon-jt.png",
+				"static/h-ui/src/images/face/203.gif",
+				"static/h-ui/src/images/face/QQ/56.gif",
+				"static/h-ui/src/images/dataTable/sort_desc.png",
+				"static/h-ui/src/images/iCheck/green.png",
+				"lib/My97DatePicker/4.8/skin/whyGreen/bg.jpg",
+				"lib/bootbox/4.4.0/bootbox.js",
+				"lib/Swiper/3.4.2/js/swiper.jquery.min.js",
+				"static/h-ui/src/js/jquery.emailsuggest.js",
+				"lib/jselect-1.0.js",
+				"static/h-ui/images/face/QQ/35.gif",
+				"lib/Swiper/3.4.2/demos/10-slides-per-column.html",
+				"static/h-ui/images/face/QQ/53.gif",
+				"static/h-ui/images/iCheck/minimal.png",
+				"static/h-ui/src/images/face/QQ/46.gif",
+				"static/h-ui/images/face/QQ/13.gif",
+				"static/h-ui/images/face/QQ/64.gif",
+				"static/h-ui/css/H-ui.reset.css",
+				"static/h-ui/src/images/face/QQ/93.gif",
+				"lib/Swiper/3.4.2/demos/21-autoplay.html",
+				"lib/Swiper/3.4.2/demos/25-hash-navigation.html",
+				"static/h-ui/images/face/QQ/40.gif",
+				"static/h-ui/src/images/face/QQ/31.gif",
+				"static/h-ui/src/images/face/QQ/78.gif",
+				"lib/Swiper/3.4.2/demos/32-scroll-container.html",
+				"static/h-ui/images/face/QQ/88.gif",
+				"static/h-ui/src/images/face/QQ/68.gif",
+				"static/h-ui/src/images/face/QQ/90.gif",
+				"static/h-ui/src/images/face/QQ/106.gif",
+				"static/h-ui/images/face/QQ/8.gif",
+				"static/h-ui/src/images/iCheck/minimal.png",
+				"static/h-ui/images/verticalTab/tabNav.png",
+				"static/h-ui/src/images/face/QQ/40.gif",
+				"lib/Swiper/3.4.2/demos/03-vertical.html",
+				"lib/Swiper/3.4.2/demos/08-centered-auto.html",
+				"static/h-ui/src/js/jQuery.Huialert.js",
+				"static/h-ui/images/iCheck/purple.png",
+				"static/h-ui/images/face/QQ/49.gif",
+				"static/h-ui/images/face/QQ/69.gif",
+				"static/h-ui/src/Huitotop.html",
+				"static/h-ui/src/images/face/QQ/73.gif",
+				"static/h-ui/src/Bootstrap.button.html",
+				"static/h-ui/images/face/QQ/12.gif",
+				"static/h-ui/images/dataTable/sort_desc.png",
+				"static/h-ui/src/js/jQuery.HuitogglePassword.js",
+				"static/h-ui/src/images/steps/step_bg.png",
+				"static/h-ui/images/verticalTab/tabNav_right-active.png",
+				"static/h-ui/src/Huifocusblur.html",
+				"lib/Swiper/3.4.2/demos/07-centered.html",
+				"static/h-ui/images/iCheck/green@2x.png",
+				"static/h-ui/src/js/Bootstrap.tooltip.js",
+				"static/h-ui/src/js/jQuery.responsive-nav.js",
+				"static/h-ui/src/Huifold.html",
+				"static/h-ui/src/images/iCheck/grey@2x.png",
+				"static/h-ui/src/images/face/QQ/5.gif",
+				"static/h-ui/images/face/QQ/5.gif",
+				"static/h-ui/src/css/Bootsrtap.Switch.css",
+				"static/h-ui/src/images/face/QQ/96.gif",
+				"static/h-ui/images/face/QQ/60.gif",
+				"static/h-ui/src/images/ucnter/avatar-default-S.gif",
+				"static/h-ui/images/face/QQ/38.gif",
+				"lib/Swiper/3.4.2/demos/01-default.html",
+				"static/h-ui/src/images/face/QQ/53.gif",
+				"lib/Swiper/3.4.2/demos/22-dynamic-slides.html",
+				"static/h-ui/src/images/iCheck/orange.png",
+				"static/h-ui/src/images/face/QQ/50.gif",
+				"static/h-ui/src/images/iCheck/minimal@2x.png",
+				"static/h-ui/src/images/dataTable/sort_both.png",
+				"static/h-ui/src/images/face/QQ/55.gif",
+				"static/h-ui/images/face/QQ/0.gif",
+				"static/h-ui/images/face/QQ/83.gif",
+				"lib/My97DatePicker/4.8/skin/twoer/img.gif",
+				"static/h-ui/images/iCheck/red@2x.png",
+				"static/h-ui/src/js/jQuery.Huisidenav.js",
+				"lib/Hui-iconfont/1.0.8/demo.html",
+				"lib/Swiper/3.4.2/demos/02-responsive.html",
+				"static/h-ui/src/images/face/QQ/75.gif",
+				"static/h-ui/src/images/star/iconpic-star-S.png",
+				"static/h-ui/images/ucnter/avatar.png",
+				"static/h-ui/images/face/QQ/80.gif",
+				"static/h-ui/images/face/QQ/51.gif",
+				"static/h-ui/images/loading/loading-b.gif",
+				"static/h-ui/images/face/QQ/32.gif",
+				"lib/Swiper/3.4.2/demos/14-nav-arrows.html",
+				"static/h-ui/images/face/QQ/15.gif",
+				"static/h-ui/images/face/QQ/104.gif",
+				"static/h-ui/src/js/Bootstrap.datetimepicker.js",
+				"static/h-ui/images/iconpic-arrow.png",
+				"lib/jquery.validation/1.14.0/messages_zh.js",
+				"static/h-ui/images/face/QQ/34.gif",
+				"static/h-ui/images/face/QQ/23.gif",
+				"lib/jquery.SuperSlide/2.1.1/demo/03/demo.html",
+				"static/h-ui/src/images/face/QQ/27.gif",
+				"static/h-ui/src/js/jQuery.Huifocusblur.js",
+				"static/h-ui/images/face/QQ/54.gif",
+				"static/h-ui/images/face/209.gif",
+				"static/h-ui/src/images/face/QQ/44.gif",
+				"static/h-ui/src/images/face/QQ/26.gif",
+				"lib/Swiper/3.4.2/js/swiper.js",
+				"static/h-ui/images/face/208.gif",
+				"static/h-ui/src/images/face/QQ/1.gif",
+				"static/h-ui/images/iCheck/yellow@2x.png",
+				"static/h-ui/src/images/face/QQ/86.gif",
+				"static/h-ui/src/images/iCheck/yellow@2x.png",
+				"lib/jquery.validation/1.14.0/additional-methods.js",
+				"static/h-ui/src/images/face/QQ/89.gif",
+				"static/h-ui/src/images/face/QQ/69.gif",
+				"static/h-ui/js/H-ui.js",
+				"static/h-ui/src/js/Bootstrap.alert.js",
+				"lib/swfobject.js",
+				"static/h-ui/src/js/jQuery.cookie.js",
+				"static/h-ui/images/verticalTab/tabNav_right.png",
+				"static/h-ui/images/face/QQ/65.gif",
+				"static/h-ui/images/face/QQ/79.gif",
+				"static/h-ui/src/js/jQuery.form.js",
+				"static/h-ui/images/face/202.gif",
+				"lib/Swiper/3.4.2/css/swiper.css",
+				"static/h-ui/src/images/ucnter/noavatar_small.gif",
+				"static/h-ui/images/face/QQ/27.gif",
+				"lib/My97DatePicker/4.8/calendar.js",
+				"static/h-ui/src/images/iCheck/red.png",
+				"static/h-ui/images/face/QQ/26.gif",
+				"static/h-ui/src/images/verticalTab/tab_bg.png",
+				"static/h-ui/images/verticalTab/tabNav-active.png",
+				"lib/Swiper/3.4.2/LICENSE",
+				"lib/Validform/5.3.2/Validform.min.js",
+				"static/h-ui/src/images/face/QQ/99.gif",
+				"static/h-ui/src/images/face/QQ/13.gif",
+				"static/h-ui/src/js/jQuery.iCheck.js",
+				"static/h-ui/src/images/steps/step_arrow-active.png",
+				"static/h-ui/images/face/QQ/28.gif",
+				"lib/Hui-iconfont/1.0.8/iconfont.eot",
+				"static/h-ui/src/js/jQuery.Huitextarealength.js",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/b-2.jpg",
+				"static/h-ui/js/H-ui.min.js",
+				"static/h-ui/images/face/QQ/46.gif",
+				"lib/layer/2.4/layer.js",
+				"static/h-ui/images/face/206.gif",
+				"static/h-ui/src/images/iCheck/aero@2x.png",
+				"lib/Swiper/3.4.2/demos/26-rtl.html",
+				"static/h-ui/src/images/face/QQ/87.gif",
+				"static/h-ui/src/images/face/QQ/11.gif",
+				"static/h-ui/images/verticalTab/tab_bg.png",
+				"static/h-ui/images/face/QQ/78.gif",
+				"static/h-ui/src/images/face/QQ/104.gif",
+				"static/h-ui/images/validform/iconpic-right.png",
+				"static/h-ui/src/images/iCheck/red@2x.png",
+				"static/h-ui/src/js/jQuery.raty.js",
+				"lib/Swiper/3.4.2/demos/18-effect-coverflow.html",
+				"lib/laypage/1.2/laypage.js",
+				"static/h-ui/src/images/acrossTab/unslider-arrow2.png",
+				"lib/Swiper/3.4.2/demos/35-effect-flip.html",
+				"static/h-ui/src/images/validform/iconpic-error.png",
+				"lib/nprogress/0.2.0/nprogress.js",
+				"static/h-ui/images/iCheck/aero@2x.png",
+				"static/h-ui/images/face/205.gif",
+				"static/h-ui/src/images/verticalTab/tabNav-active.png",
+				"static/h-ui/src/js/Bootstrap.modal.js",
+				"static/h-ui/images/face/QQ/37.gif",
+				"static/h-ui/src/js/jQuery.IEMobileHack.js.js",
+				"static/h-ui/src/images/face/QQ/84.gif",
+				"static/h-ui/src/images/face/QQ/51.gif",
+				"static/h-ui/src/images/face/QQ/25.gif",
+				"static/h-ui/images/face/204.gif",
+				"lib/jquery.validation/1.14.0/additional-methods.min.js",
+				"lib/layer/2.4/skin/default/icon-ext.png",
+				"static/h-ui/images/face/QQ/59.gif",
+				"lib/layer/2.4/skin/default/icon.png",
+				"static/h-ui/src/images/loading-b.gif",
+				"static/h-ui/src/js/Bootstrap.popover.js",
+				"lib/Swiper/3.4.2/demos/23-thumbs-gallery-loop.html",
+				"static/h-ui/src/images/jselect/iconpic-arrow-down2.png",
+				"static/h-ui/images/dataTable/sort_both.png",
+				"static/h-ui/images/face/QQ/30.gif",
+				"static/h-ui/src/images/face/201.gif",
+				"static/h-ui/src/images/face/QQ/83.gif",
+				"static/h-ui/src/images/face/QQ/80.gif",
+				"static/h-ui/src/images/iCheck/blue@2x.png",
+				"static/h-ui/src/images/face/QQ/3.gif",
+				"static/h-ui/images/face/QQ/3.gif",
+				"static/h-ui/images/validform/iconpic-warning.png",
+				"static/h-ui/images/face/QQ/72.gif",
+				"static/h-ui/src/images/face/QQ/2.gif",
+				"static/h-ui/src/images/face/QQ/82.gif",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/iconpic-arrow-up.png",
+				"static/h-ui/src/images/face/QQ/64.gif",
+				"static/h-ui/images/face/QQ/106.gif",
+				"static/h-ui/src/images/face/QQ/48.gif",
+				"lib/layer/2.4/skin/layer.css",
+				"static/h-ui/src/images/face/210.gif",
+				"static/h-ui/images/face/QQ/99.gif",
+				"static/h-ui/src/images/face/QQ/45.gif",
+				"static/h-ui/src/images/face/QQ/28.gif",
+				"static/h-ui/src/images/face/QQ/15.gif",
+				"lib/jquery.validation/1.14.0/jquery.validate.js",
+				"lib/jquery.SuperSlide/2.1.1/demo/02/images/banner-1.jpg",
+				"static/h-ui/images/face/QQ/52.gif",
+				"lib/My97DatePicker/4.8/skin/twoer/img.png",
+				"static/h-ui/src/images/iCheck/orange@2x.png",
+				"lib/My97DatePicker/4.8/WdatePicker.js",
+				"static/h-ui/src/js/jQuery.stopDefault.js",
+				"static/h-ui/images/face/QQ/48.gif",
+				"static/h-ui/images/face/QQ/98.gif",
+				"static/h-ui/images/face/QQ/62.gif",
+				"static/h-ui/images/steps/step_arrow-active.png",
+				"static/h-ui/images/face/QQ/97.gif",
+				"static/h-ui/src/images/face/QQ/42.gif",
+				"static/h-ui/src/images/acrossTab/acrossTab-close.png",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/b-3.jpg",
+				"static/h-ui/src/images/face/QQ/47.gif",
+				"static/h-ui/images/face/QQ/56.gif",
+				"static/h-ui/src/js/jQuery.Huimodalalert.js",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/b-6.jpg",
+				"static/h-ui/src/images/face/QQ/62.gif",
+				"lib/bootbox/4.4.0/bootbox.min.js",
+				"static/h-ui/src/images/iCheck/grey.png",
+				"static/h-ui/src/images/verticalTab/tabNav_right-active.png",
+				"lib/ColorPicker/1.5.0/ColorPicker.js",
+				"static/h-ui/src/images/face/QQ/43.gif",
+				"static/h-ui/images/face/203.gif",
+				"static/h-ui/src/Huihover.html",
+				"static/h-ui/src/images/face/QQ/36.gif",
+				"static/h-ui/src/images/steps/step_arrow.png",
+				"static/h-ui/images/dataTable/sort_asc.png",
+				"lib/jquery.SuperSlide/2.1.1/demo/02/images/banner-3.jpg",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/b-4.jpg",
+				"static/h-ui/src/images/iCheck/aero.png",
+				"static/h-ui/src/images/face/QQ/63.gif",
+				"static/h-ui/src/images/face/QQ/35.gif",
+				"static/h-ui/images/face/QQ/102.gif",
+				"static/h-ui/src/images/face/QQ/97.gif",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/b-1.jpg",
+				"lib/expressInstall.swf",
+				"lib/My97DatePicker/4.8/skin/default/datepicker.css",
+				"static/h-ui/images/face/QQ/43.gif",
+				"static/h-ui/src/js/jQuery.Huipreview.js",
+				"static/h-ui/src/images/face/QQ/14.gif",
+				"lib/DD_belatedPNG_0.0.8a-min.js",
+				"static/h-ui/images/face/QQ/101.gif",
+				"static/h-ui/src/images/verticalTab/tabNav.png",
+				"static/h-ui/images/face/QQ/85.gif",
+				"static/h-ui/images/verticalTab/tabNav_right-hover.png",
+				"static/h-ui/src/js/jQuery.Huiselect.js",
+				"static/h-ui/images/face/QQ/9.gif",
+				"static/h-ui/src/js/Bootstrap.slider.js",
+				"lib/Swiper/3.4.2/demos/24-multiple-swipers.html",
+				"static/h-ui/src/images/steps/step_bg-active.png",
+				"static/h-ui/images/iCheck/pink.png",
+				"static/h-ui/src/js/jquery.lazyload.js",
+				"static/h-ui/images/face/QQ/71.gif",
+				"static/h-ui/src/images/face/QQ/66.gif",
+				"static/h-ui/src/Huitextarealength.html",
+				"static/h-ui/images/face/QQ/47.gif",
+				"static/h-ui/src/images/face/QQ/16.gif",
+				"static/h-ui/src/images/face/QQ/52.gif",
+				"static/h-ui/images/face/QQ/86.gif",
+				"static/h-ui/src/images/face/QQ/10.gif",
+				"static/h-ui/src/images/face/209.gif",
+				"static/h-ui/images/face/QQ/74.gif",
+				"static/h-ui/src/images/face/207.gif",
+				"lib/Swiper/3.4.2/demos/17-effect-cube.html",
+				"static/h-ui/images/face/QQ/39.gif",
+				"lib/Swiper/3.4.2/demos/23-thumbs-gallery.html",
+				"static/h-ui/images/face/QQ/68.gif",
+				"static/h-ui/src/images/face/QQ/33.gif",
+				"lib/Swiper/3.4.2/demos/15-infinite-loop.html",
+				"static/h-ui/images/face/QQ/100.gif",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/s-2.jpg",
+				"static/h-ui/images/face/QQ/19.gif",
+				"static/h-ui/src/images/face/QQ/12.gif",
+				"static/h-ui/images/face/QQ/41.gif",
+				"static/h-ui/src/js/jQuery.format.js",
+				"static/h-ui/src/js/Bootstrap.transition.js",
+				"lib/My97DatePicker/4.8/lang/zh-tw.js",
+				"static/h-ui/images/Hui-tags/empty.png",
+				"static/h-ui/images/rollpic/unslider-arrow.png",
+				"static/h-ui/src/Huipreview.html",
+				"static/h-ui/src/images/face/QQ/76.gif",
+				"static/h-ui/src/images/face/QQ/29.gif",
+				"static/h-ui/src/images/iCheck/purple@2x.png",
+				"static/h-ui/src/js/jQuery.Huitab.js",
+				"lib/jquery.SuperSlide/2.1.1/demo/02/demo.html",
+				"static/h-ui/images/face/201.gif",
+				"static/h-ui/images/star/iconpic-star-S.png",
+				"static/h-ui/src/images/face/QQ/37.gif",
+				"lib/My97DatePicker/4.8/skin/WdatePicker.css",
+				"static/h-ui/src/js/jQuery.Huitotop.js",
+				"lib/jquery.SuperSlide/2.1.1/demo/01/images/s-6.jpg",
+				"lib/My97DatePicker/4.8/skin/default/img.gif",
+				"static/h-ui/src/js/mValue.js",
+				"static/h-ui/images/face/QQ/81.gif",
+				"static/h-ui/images/face/QQ/61.gif",
+				"static/h-ui/src/images/face/QQ/49.gif",
+				"static/h-ui/src/images/face/QQ/18.gif"
+			]
+		}
+	}
+}

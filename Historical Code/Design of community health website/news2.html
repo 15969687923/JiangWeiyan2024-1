@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>新闻收藏资料卡</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min1.css">
+		<link rel="stylesheet" href="css/Button.css">
+		<link rel="stylesheet" type="text/css" href="css/hui.css" />
+		<style>
+			#newstitle{
+				position: absolute;
+				left: 10px;
+				bottom: 0px;
+				top: 0px;
+				right: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">推荐资讯卡</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<div class="mui-media-body">
+						<h4 id="newstitle"></h4>
+					</div>
+				</div>
+				<div class="mui-card-content" >
+					<div class="mui-content-padded">
+					<p id="newscontent"></p>
+					<p id="newser" style="float: left;"></p>
+					<p id="newstime" style="float: right;"></p>
+					</div> 
+				</div>
+				<br /><br />
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/hui.js"></script>
+		<script>
+				mui.plusReady(function() {
+					var objnum;
+	                objnum = plus.webview.currentWebview().name;
+		        	var obj2=JSON.parse(JSON.parse(localStorage.getItem('news')).info);
+		        	for(var i=0;i<obj2.length;i++){
+		        	if(obj2[i].id==objnum){
+		        	var title=document.getElementById("newstitle");
+					title.innerText=obj2[i].title;
+		      		var content=document.getElementById("newscontent");
+		      		content.innerText=obj2[i].content;
+		      		var name=document.getElementById("newser");
+					name.innerText=obj2[i].name;
+					var times=document.getElementById("newstime");
+					times.innerText=obj2[i].times;
+					localStorage.setItem('iD', JSON.stringify({ num:obj2[i].id}));
+					}
+					}
+				});
+				var flag1=0;
+				function shouchang(e){
+					if(flag1==0){
+						document.getElementById("sc").innerText="取消收藏";
+						hui.alert("收藏成功！");
+						flag1=1;
+						mui.post('http://119.29.155.20/apphoutai/collectnew.php',{
+							username:JSON.parse(localStorage.getItem('obj')).name,
+							id:JSON.parse(localStorage.getItem('iD')).num,
+							flag:1
+						},function(data){},'json');
+					}else{
+						document.getElementById("sc").innerText="加入收藏";
+						hui.alert("取消成功！");
+						flag1=0;
+						mui.post('http://119.29.155.20/apphoutai/collectnew.php',{
+							username:JSON.parse(localStorage.getItem('obj')).name,
+							id:JSON.parse(localStorage.getItem('iD')).num,
+							flag:0
+						},function(data){},'json');
+					}
+				}
+		</script>
+		<script>
+				function liaotian(e){
+					mui.openWindow({
+                    url: 'im-chat.html',
+                    id: 'extras',
+                    extras: {
+                        name:0
+                    },
+                    waiting: {
+                        autoShow: true
+                    }
+                });
+				}
+		</script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/center1.css" />
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/hui.css" />
+		<link rel="stylesheet" type="text/css" href="css/icons-extra.css">
+		<style type="text/css">
+			#list {
+				/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
+				margin-top: -1px;
+			}
+			#header{
+				background-color: white;
+				text-align: center;
+				font-family:"黑体";
+				margin-bottom: 5%;
+				height: 32px;
+				line-height: 32px;
+			}
+			#touxiang{
+				border-radius: 100px;
+				width: 80px;
+				margin-left: 20px;
+			}
+			#yonghuming{
+				position: absolute;
+				bottom: 40px;
+				left: 120px;
+			}
+			#xingbie{
+				width: 18px;
+				height: 18px;
+				position: relative;
+				bottom: 17%;
+				left: 20%;
+			}
+			.zhuanjiatouxiang{
+				border-radius: 100px;
+				width: 80px;
+				margin-left: 20px;
+			}
+			.zhuanjiaming{
+				position: absolute;
+				bottom: 58px;
+				left: 120px;
+			}
+			.zhuanjiaxingbie{
+				width: 18px;
+				height: 18px;
+				position: absolute;
+				bottom: 62px;
+				left: 223px;
+			}
+			.zhuanjiazhicheng{
+				text-decoration: none;
+				position: absolute;
+				top:50px;
+				left: 120px;
+			}
+			#conn{
+				color:#62C462;
+				font-family:STKaiti;
+				font-size:25px;
+				margin-left: 0px;
+			}
+			#more{
+				float: right;
+				color:#62C462;
+				font-family:STKaiti;
+				font-size:20px;
+			}
+			#lianxi{
+				height: 55px;
+			}
+			.mui-scroll-wrapper1{
+				position:fixed;
+				z-index:2;
+				top:0;
+				bottom:0;
+				left:0;
+				overflow:hidden;
+				width:100%;}
+			.mui-scroll-wrapper1{ 
+				touch-action: none; 
+			}
+		</style>
+		<!--进入界面-->
+		<script>
+			function wode(e){
+					mui.openWindow({
+                    url: 'infomation2.html',
+                    id: 'extras',
+                    extras: {
+                        name:0
+                    },
+                    waiting: {
+                        autoShow: true
+                    }
+             });}
+		</script>
+	</head>
+
+	<body>
+			<div id="tabbar" class="mui-control-content mui-active">
+				<header class="mui-bar mui-bar-nav">
+					<h1 id="title" class="mui-title">用户</h1>
+				</header>
+    				<div class="hui-wrap mui-content">
+    				<div id="refreshContainer" class="hui-refresh">
+        				<div class="hui-refresh-icon"></div>
+        					<div class="hui-refresh-content">
+            					<ul id="list" class="mui-table-view hehe">
+            					</ul>
+       	 					</div>
+    					</div>
+					</div>
+			</div>
+			<div id="tabbar-with-map" class="mui-control-content">
+			<header class="mui-bar mui-bar-nav">
+				<h1 id="title" class="mui-title">我的</h1>
+			</header>
+			<div class="mui-content">
+			<ul id="list2" class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						<img src="images/logo.png" id="touxiang"/>
+						<span id="yonghuming">王德坤</span>
+						<img src="img/boy.jpg" id="xingbie"/>
+					</a>
+				</li>
+			</ul>
+			</div>
+			<div>
+				<br />
+			</div>
+			<ul id="list1" class="mui-table-view mui-table-view-chevron xixi">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" style="text-decoration: none;" id="1">
+						<span>完善信息</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" style="text-decoration: none;" id="2">
+						<span>发新闻</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" style="text-decoration: none;" id="3">
+						<span>点赞用户</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" style="text-decoration: none;" id="4">
+						设置
+					</a>
+				</li>
+			</ul>
+		</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-icon-extra mui-icon-extra-peoples"></span>
+				<span class="mui-tab-label">用户</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-map">
+				<span class="mui-icon-extra mui-icon-extra-university"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<script type="text/javascript" src="js/hui.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/update.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/hui-refresh-load-more.js"></script>
+<!--页面跳转-->
+<script>
+	mui("#list2").on("tap","a",function(e){
+				mui.openWindow({
+         			id: 'infomation2.html',
+         			url: 'infomation2.html',
+         		show: {
+                	aniShow: 'pop-in'
+          		},
+           		extras: {    //extras里面的就是参数了
+                	name: this.getAttribute("name")
+           		},
+           		waiting: {
+                 	autoShow: true, //自动显示等待框，默认为true
+           		}
+  				});
+  				
+			});
+	mui(".xixi").on("tap","a",function(e){
+		switch(this.getAttribute("id")){
+			case "4":	
+					location.href="setting2.html";
+            		break;
+            case "1":	
+					mui.openWindow({
+                    url: 'input2.html',
+                    id: 'input2.html',
+                    show: {
+                	aniShow: 'pop-in'
+          			},
+                    extras: {
+                        name:0
+                    },
+                    waiting: {
+                        autoShow: true
+                    }
+            		});
+            		break;
+            case "2":	
+					mui.openWindow({
+                    url: 'ComeOutNews.html',
+                    id: 'ComeOutNews.html',
+                    show: {
+                	aniShow: 'pop-in'
+          			},
+                    extras: {
+                        name:0
+                    },
+                    waiting: {
+                        autoShow: true
+                    }
+            		});
+            		break;
+            case "3":	
+					mui.openWindow({
+                    url: 'zjdianzan.html',
+                    id: 'zjdianzan.html',
+                    show: {
+                	aniShow: 'pop-in'
+          			},
+                    extras: {
+                        name:0
+                    },
+                    waiting: {
+                        autoShow: true
+                    }
+            		});
+            		break;
+		}});
+</script>
+<!--//推荐界面下拉刷新-->
+<script type="text/javascript">
+hui.refresh('#refreshContainer', refresh);
+//下拉刷新
+function refresh(){
+    hui.loading('加载中...');
+    hui.post(
+        'http://119.29.155.20/apphoutai/list.php',
+        {zj:JSON.parse(localStorage.getItem('obj')).name},
+        function(msg){
+            //判断加载完毕
+            console.log(msg);
+            var obj2 = JSON.parse(msg);
+            hui.closeLoading();
+            var html = '';
+            for(var i = 0; i < obj2.length; i++){
+                html +='<li class="mui-table-view-cell mui-media">'+
+						'<a href="javascript:;" style="text-decoration: none;" id="x'+i+'">'+
+						'<img class="mui-media-object mui-pull-left" id="imga'+i+'">'+
+						'<div class="mui-media-body"><span id="cont'+i+'"></span>'+
+						'<p class="mui-ellipsis" id="xiaox'+i+'"></p>'+
+						'</div>'+
+						'</a><span class="mui-badge" id="shum'+i+'"></span>'+
+						'</li>'
+            }
+            hui('#list').html(html);
+            for(var i=0;i<obj2.length;i++){
+            	var imga1=document.getElementById("imga"+i);
+        		imga1.src="http://"+obj2[i].touxiang;
+        		var obj3=document.getElementById("cont"+i);
+				obj3.innerText=obj2[i].username;
+				var obj6=document.getElementById("xiaox"+i);
+				obj6.innerText=obj2[i].content;
+        		var tele=document.getElementById("shum"+i);
+        		tele.innerText=obj2[i].shumu;
+        		var name1=document.getElementById("x"+i);
+        		name1.name=obj2[i].username+"+"+obj2[i].touxiang;
+            }
+            //结束刷新
+            hui.endRefresh();
+            //重置加载更多状态
+            hui.resetLoadMore();
+        },
+        function(e){
+        
+    });
+}
+</script>
+<!--用户聊天信息导入-->
+<script>
+	setInterval(function (){
+    hui.post(
+        'http://119.29.155.20/apphoutai/list.php',
+        {zj:JSON.parse(localStorage.getItem('obj')).name},
+        function(msg){
+            //判断加载完毕
+            console.log(msg);
+            var obj2 = JSON.parse(msg);
+            hui.closeLoading();
+            var html = '';
+            for(var i = 0; i < obj2.length; i++){
+                html +='<li class="mui-table-view-cell mui-media">'+
+										'<a href="javascript:;" style="text-decoration: none;" id="x'+i+'">'+
+										'<img class="mui-media-object mui-pull-left" id="imga'+i+'">'+
+										'<div class="mui-media-body"><span id="cont'+i+'"></span>'+
+										'<p class="mui-ellipsis" id="xiaox'+i+'"></p>'+
+										'</div>'+
+										'</a><span class="mui-badge" id="shum'+i+'"></span>'+
+										'</li>'
+										
+            }
+            hui('#list').html(html);
+            for(var i=0;i<obj2.length;i++){
+            	var imga1=document.getElementById("imga"+i);
+        		imga1.src="http://"+obj2[i].touxiang;
+        		var obj3=document.getElementById("cont"+i);
+				obj3.innerText=obj2[i].username;
+				var obj6=document.getElementById("xiaox"+i);
+				obj6.innerText=obj2[i].content;
+        		var tele=document.getElementById("shum"+i);
+        		tele.innerText=obj2[i].shumu;
+        		var name1=document.getElementById("x"+i);
+        		name1.name=obj2[i].username+"+"+obj2[i].touxiang;
+            }
+            //结束刷新
+            hui.endRefresh();
+            //重置加载更多状态
+            hui.resetLoadMore();
+        },
+        function(e){
+    });
+},2000);
+</script>
+<!--进入聊天界面-->
+<script>
+	mui(".hehe").on("tap","a",function(e){
+		var htx=this.getAttribute("name").split("+");
+        localStorage.setItem('yhzh', JSON.stringify({un:htx[0]}));
+        localStorage.setItem('yhtx', JSON.stringify({tx:htx[1]}));
+        var a=0;
+    	localStorage.setItem('fla', JSON.stringify({tx:a}));
+        mui.openWindow({
+        			id: 'extras',
+        			url: 'im-chatzj.html',
+        			show: {
+               			aniShow: 'pop-in'
+        			},
+        			extras: {    //extras里面的就是参数了
+             			name:0
+        			},
+        			waiting: {
+                		autoShow: true, //自动显示等待框，默认为true
+        			}});
+        
+        hui.post(
+        	'http://119.29.155.20/apphoutai/clear.php',
+        	{zj:JSON.parse(localStorage.getItem('obj')).name,username:JSON.parse(localStorage.getItem('yhzh')).un},
+        	function(msg){
+        	},
+        function(e){
+        	hui.alert("请检查网络连接", "好的", window.location.href="index.html");
+    	});
+    	
+    	});
+</script>
+<!--给我的信息赋值-->
+		<script>
+			var obj = JSON.parse(localStorage.getItem('obj'));
+			var n=obj.name;
+			hui.post(
+    			'http://119.29.155.20/apphoutai/ourzj.php',
+    			{username:obj.name},
+    		function(msg){
+        		console.log(msg);
+        		var obj2=JSON.parse(msg);
+        		localStorage.setItem('obj7', JSON.stringify({ name7:obj2}));
+        		var tou=document.getElementById("touxiang");
+        		tou.src="http://"+obj2.toux;
+        		var num=document.getElementById("yonghuming");
+        		num.innerText=obj2.name;
+				var obj4=document.getElementById("xingbie");
+				if(obj2.sex==1){
+					obj4.src="img/boy.jpg";
+				}else if(obj2.sex==0){
+					obj4.src="img/gril.jpg";
+				}else{
+					obj4.src="";
+				}
+    		},
+    		function(e){
+        		hui.iconToast('读取消息失败', 'warn');
+    		}
+			);
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min1.css">
+		<link rel="stylesheet" href="css/Button.css">
+		<style>
+			h5 {
+				margin: 5px 7px;
+			}
+			#biao{
+				position: absolute;
+				top: 10px;
+				left: 36%;
+			}
+			.hehe{
+				position: absolute;
+				top: 5px;
+				left: 0%;
+			}
+			#headimg{
+				position: relative;
+				left: 28%;
+			}
+			#dianzan{
+				position: relative; 
+				bottom: -4px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">专家资料卡</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<img src="images/logo.png" id="toux" />
+					<div class="mui-media-body">
+						<span id="xingming"></span>
+						<p><span id="zhicheng"></span></p>
+					</div>
+				</div>
+				<div class="mui-card-content" >
+					<div class="mui-content-padded">
+					<p>
+					<span id="xingbie"></span><br />
+					<span id="tele"></span><br />
+					<span id="email"></span><br />
+					简介
+					</p>
+					<textarea disabled="disabled" cols="20" rows="5" id="jianjie" style="text-indent: 2em;">
+					</textarea>
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<div>
+						<a id="dianzan" onclick="dian()"><img src="img/dianzhan.png" id="zan"  width="20px" /></a>&nbsp;
+						<span class="mui-badge mui-badge-success" id="sm">0</span>
+					</div>
+					<a class="mui-card-link" id="lxzj" name="" onclick="liaotian()">联系专家</a>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/hui.js"></script>
+		<script src="html5plus://ready"/>
+		<script src="js/mui.js"></script>
+<!--点赞功能-->
+<script>
+	var flag=0;
+	var objname;
+    objname = plus.webview.currentWebview().name;
+	var obj2=JSON.parse(localStorage.getItem('obj9')).name1;
+	document.getElementById("sm").innerText=obj2[parseInt(objname)].praisetimes;
+	var users=obj2[parseInt(objname)].praiseuser;
+	for(var i=0;i<users.length;i++){
+		if(users[i]==JSON.parse(localStorage.getItem('obj')).name){
+			document.getElementById("zan").src="img/dianzhan3.png";
+			flag=1;
+		}
+	}
+	function dian(){
+            	if(flag==0){
+            		document.getElementById("zan").src="img/dianzhan3.png";
+            		document.getElementById("sm").innerText=parseInt(document.getElementById("sm").innerText)+1;
+            		flag=1;
+            		mui.post(
+            			'http://119.29.155.20/apphoutai/praisetimes.php',
+            			{usernameyh:JSON.parse(localStorage.getItem('obj')).name,usernamezj:JSON.parse(localStorage.getItem('zjzh')).username,praisetimes:1},
+            			function(msg){
+            			}
+            		);
+				}else{
+					document.getElementById("zan").src="img/dianzhan.png";
+					document.getElementById("sm").innerText=parseInt(document.getElementById("sm").innerText)-1;
+					flag=0;
+					mui.post(
+            			'http://119.29.155.20/apphoutai/praisetimes.php',
+            			{usernameyh:JSON.parse(localStorage.getItem('obj')).name,usernamezj:JSON.parse(localStorage.getItem('zjzh')).username,praisetimes:0},
+            			function(msg){
+            			}
+            		);
+				}
+		}
+</script>
+<!--专家信息导入-->
+<script>
+				mui.plusReady(function() {
+				var objname;
+                objname = plus.webview.currentWebview().name;
+				var obj2=JSON.parse(localStorage.getItem('obj9')).name1;
+        		var touxx=document.getElementById("toux");
+				touxx.src="http://"+obj2[parseInt(objname)].toux;
+        		var num=document.getElementById("xingming");
+        		num.innerText=obj2[parseInt(objname)].name;
+        		var obj3=document.getElementById("zhicheng");
+				obj3.innerText=obj2[parseInt(objname)].zhicheng;
+				var obj4=document.getElementById("xingbie");
+				if(obj2[parseInt(objname)].sex==1){
+					obj4.innerText="性别：男";
+				}else if(obj2[parseInt(objname)].sex==0){
+					obj4.innerText="性别：女";
+				}else{
+					obj4.innerText="性别：无";
+				}
+				var tele1=document.getElementById("tele");
+				tele1.innerText="电话："+obj2[parseInt(objname)].phone;
+				var email1=document.getElementById("email");
+				email1.innerText="邮箱："+obj2[parseInt(objname)].mailbox;
+				var jianjie1=document.getElementById("jianjie");
+				jianjie1.value=obj2[parseInt(objname)].jianjie;
+				var jianjie1=document.getElementById("lxzj");
+				jianjie1.name=obj2[parseInt(objname)].username;
+				localStorage.setItem('zjzh', JSON.stringify({ username:jianjie1.name,name:obj2[parseInt(objname)].name}));
+				});
+</script>
+<!--聊天界面跳转-->
+			<script>
+				function liaotian(e){
+					var a=0;
+					localStorage.setItem('flyh', JSON.stringify({yhx:a}));
+					mui.openWindow({
+                    url: 'im-chat.html',
+                    id: 'extras',
+                    extras: {
+                        name:0
+                    },
+                    waiting: {
+                        autoShow: true
+                    }
+             });}
+		</script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			
+		</script>
+	</body>
+</html>

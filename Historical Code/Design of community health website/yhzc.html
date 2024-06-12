@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.min.css" />
+<link rel="stylesheet" type="text/css" href="css/center1.css" />
+<link rel="stylesheet" type="text/css" href="css/hui.css" />
+<!--[if lt IE 9]>
+<link href="static/h-ui/css/H-ui.ie.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<style type="text/css">
+.ui-sortable .panel-header{ cursor:move}
+</style>
+<title>用户注册页面</title>
+</head>
+
+<body ontouchstart style="background:url(img/3_54964_361091c0dfce889.jpg);">
+	<div class="containBox-bg"></div>
+	<header class="navbar-wrapper"  style="background:url(img/3_54964_361091c0dfce889.jpg)；background-size:contain;">
+	</header>
+	<div class="wap-container center1 hui-fadein">
+		<nav class="breadcrumb">
+			<div class="container" style="background:#EDEEF1">
+				<i class="Hui-iconfont">&nbsp;&nbsp;&#xe67f;</i>
+				<a href="index.html" class="c-primary"><img src="img/fanhui.png"; class="fanhuijian";/></a>
+				<a href="zjzc.html" class="c-primary"style="float: right; text-decoration: none;">专家注册&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</nav>
+			<div class="panel panel-default" style="background:#EDEEF1">
+				
+				<div class="panel-body">
+					<form action="" method="post" class="form form-horizontal responsive" id="demoform" enctype ="multipart/form-data">
+						<div class="row cl">
+							<label class="form-label col-xs-3">请输入您的姓名：</label>
+							<div class="formControls col-xs-8">
+								<input type="text" class="input-text" id="name" placeholder="姓名" name="name" id="name" autocomplete="off">
+							</div>
+						</div>
+						<div class="row cl">
+							<label class="form-label col-xs-3">请设置您的用户名：</label>
+							<div class="formControls col-xs-8">
+								<input type="text" class="input-text" placeholder="4~16个字符，字母/中文/数字/下划线" name="username" id="username">
+							</div>
+						</div>
+						<div class="row cl">
+							<label class="form-label col-xs-3">请输入您的手机：</label>
+							<div class="formControls col-xs-8">
+								<input type="text" class="input-text" autocomplete="off" placeholder="手机" name="phone" id="phone">
+							</div>
+						</div>
+						<div class="row cl">
+							<label class="form-label col-xs-3">请设置您的密码：</label>
+							<div class="formControls col-xs-8">
+								<input type="password" class="input-text"  placeholder="密码"  id="password">
+							</div>
+						</div>
+						<div class="row cl">
+							<label class="form-label col-xs-3">请确认您的密码：</label>
+							<div class="formControls col-xs-8">
+								<input type="password" class="input-text" placeholder="重复密码" name="password2" id="password2">
+							</div>
+						</div>
+						<div class="row cl" >
+							<input class="btn btn-success radius" name="zhuce" id="widmp" type="submit" value="立&nbsp;&nbsp;&nbsp;即&nbsp;&nbsp;&nbsp;注&nbsp;&nbsp;&nbsp;册" onclick="zuce()">
+						</div>
+					</form>
+				</div>
+			</div>
+	</div>
+
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/jquery-ui/1.9.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="js/hui.js"></script>
+<script type="text/javascript" src="lib/jquery.SuperSlide/2.1.1/jquery.SuperSlide.min.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.min.js"></script>
+<!--获取导出用户注册信息-->
+<script>
+	function zuce(){
+	var $name=document.getElementById("name");
+	var name1=$name.value;
+	var $username=document.getElementById("username");
+	var username1=$username.value;
+	var $phone=document.getElementById("phone");
+	var phone1=$phone.value;
+	var $password=document.getElementById("password");
+	var password1=$password.value;
+	var $password2=document.getElementById("password2");
+	var password2=$password.value;
+	if(password1!=password2){
+		hui.iconToast('密码不一致，请重新输入！', 'warn');
+    }
+	hui.post(
+    'http://119.29.155.20/apphoutai/registery.php',
+    {name:name1,username:username1,phone:phone1,password:password1},
+    function(msg){
+        console.log(msg);
+        hui.upToast(msg);
+        var obj=JSON.parse(msg);
+        if(obj.flag==1){
+        	alert("注册成功！");
+        	window.location.href="index.html";
+        	
+        }else{
+        	hui.alert("用户名已经存在!", "好的", document.getElementById("name").focus());
+        }
+    },
+    function(e){
+        hui.alert("请检查网络连接", "好的", document.getElementById("name").focus());
+    });
+	
+}</script>
+<script>
+//弹窗
+function modaldemo(){
+	$("#modal-demo").modal("show");
+}
+//消息框
+function modalalertdemo(){
+	$.Huimodalalert('我是消息框，2秒后我自动滚蛋！',2000);
+}
+$(function(){
+	$(".input-text,.textarea").Huifocusblur();
+	
+	//幻灯片
+	jQuery("#slider-3 .slider").slide({mainCell:".bd ul",titCell:".hd li",trigger:"click",effect:"leftLoop",autoPlay:true,delayTime:700,interTime:3000,pnLoop:false,titOnClassName:"active"});
+	
+	$(".panel").Huifold({
+		titCell:'.panel-header',
+		mainCell:'.panel-body',
+		type:1,
+		trigger:'click',
+		className:"selected",
+		speed:"first",
+	});
+	
+	//邮箱提示	
+	$("#email").emailsuggest();
+	
+	//checkbox 美化
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	//日期插件
+	$("#datetimepicker").datetimepicker({
+    	format: 'yyyy-mm-dd',
+		minView: "month",
+		todayBtn:  1,
+		autoclose: 1,
+		endDate : new Date()
+	}).on('hide',function(e) {
+		//此处可以触发日期校验。
+	});
+	
+	/*+1 -1效果*/
+	$("#spinner-demo").Huispinner({
+		value:1,
+		minValue:1,
+		maxValue:99,
+		dis:1
+	});
+	
+	$(".textarea").Huitextarealength({
+		minlength:10,
+		maxlength:200.
+	});
+	
+	$("#demoform").validate({
+		rules:{
+			email:{
+				required:true,
+				email:true,
+			},
+			username:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			telephone:{
+				required:true,
+				isMobile:true,
+			},
+			password:{
+				required:true,
+				isPwd:true,
+			},
+			password2:{
+				required:true,
+				equalTo: "#password"
+			},
+			sex:{
+				required:true,
+			},
+			datetimepicker:{
+				required:true,	
+			},
+			checkbox2:{
+				required:true,
+			},
+			city:{
+				required:true,
+			},
+			website:{
+				required:true,
+				url:true,
+			},
+			beizhu:{
+				maxlength:500,
+			}
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$("#modal-shenqing-success").modal("show");
+			$(form).ajaxSubmit();
+		}
+	});
+
+	//选项卡
+	$("#HuiTab-demo1").Huitab({
+		index:0
+	});
+	
+	$("#Huitags-demo1").Huitags();
+	
+	//返回顶部
+	$.Huitotop();
+	
+	//hover效果
+	$('.maskWraper').Huihover();
+	
+	//星级评价
+	$("#star-1").raty({
+		hints: ['1','2', '3', '4', '5'],//自定义分数
+		starOff: 'iconpic-star-S-default.png',//默认灰色星星
+		starOn: 'iconpic-star-S.png',//黄色星星
+		path: 'static/h-ui/images/star',//可以是相对路径
+		number: 5,//星星数量，要和hints数组对应
+		showHalf: true,
+		targetKeep : true,
+		click: function (score, evt) {//点击事件
+			//第一种方式：直接取值
+			$("#result-1").html('你的评分是'+score+'分');
+		}
+	});
+
+	$( ".ui-sortable" ).sortable({
+		//connectWith: ".panel",
+		items:".panel",
+		handle: ".panel-header",
+		//delay: 300, //时间延迟
+		//distance: 15, //距离延迟
+		placeholder: "ui-state-highlight", //占位符样式
+		update: function(event, ui){
+			
+		}
+	}).disableSelection();
+
+ 	var _bodyHeight = $(window).height();
+	var _doch = $(document).height();
+	$(".containBox").height(_bodyHeight);
+
+	/*左右滑动菜单*/
+    $(".JS-nav-toggle").click(function() {
+		$("body").addClass('sideBox-open');
+        $(".containBox-bg").height(_bodyHeight).show();
+    });
+    $(".containBox-bg").click(function() {
+		$(this).hide();
+		$("body").removeClass('sideBox-open');
+    });
+});
+</script>
+</body>
+</html>

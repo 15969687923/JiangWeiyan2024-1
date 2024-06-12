@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<style type="text/css">
+			.ui-sortable .panel-header{ cursor:move}
+		</style>
+		<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/center1.css" />
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style type="text/css">	
+			#allmap {width: 100%;height: 95%;margin-top:10%;overflow: hidden;font-family:"微软雅黑";}
+		</style>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=OFyO7t0MZSiSXrm7eUCeFKhhVz1ESDmb"></script>
+		<title>地图展示</title>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="text-decoration: none;"></a>
+			<h1 id="title" class="mui-title">周边推荐</h1>
+		</header>
+		<div id="allmap"></div>
+		<!--<div>
+			<p style="margin: 0;">如果不能直接显示，请打开gps定位后再点击地图右下角定位按钮刷新</p>
+		</div>-->
+<script src="js/mui.min.js"></script>
+<script type="text/javascript">
+	alert("如果不能直接显示，请打开gps定位后再点击地图右下角定位按钮刷新");
+	var addj,addw; 
+	var point;
+	var myKeys = ["健身", "保健","食疗","养生"];
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");  // 创建Map实例
+	map.centerAndZoom("济南",15);      // 初始化地图,用城市名设置地图中心点
+	map.enableScrollWheelZoom(true);
+	map.enableDragging(); 
+	
+//	var top_left_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_LEFT});  //左上角，添加默认缩放平移控件
+//	map.addControl(top_left_navigation);
+	var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_RIGHT});// 左上角，添加比例尺
+	map.addControl(top_left_control);  
+	
+	
+	// 添加带有定位的导航控件
+	var navigationControl = new BMap.NavigationControl({
+		// 靠左上角位置
+		anchor: BMAP_ANCHOR_TOP_LEFT,
+	    // LARGE类型
+	    type: BMAP_NAVIGATION_CONTROL_LARGE,
+	    // 启用显示定位
+	    enableGeolocation: true
+	});
+	map.addControl(navigationControl);
+	// 添加定位控件
+	var geolocationControl = new BMap.GeolocationControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT});
+	geolocationControl.addEventListener("locationSuccess", function(e){
+	    // 定位成功事件
+	    var address = '';
+	    address += e.addressComponent.province;
+	    address += e.addressComponent.city;
+	    address += e.addressComponent.district;
+	    address += e.addressComponent.street;
+	    address += e.addressComponent.streetNumber;
+	    alert("当前定位地址为：" + address);
+	    var local = new BMap.LocalSearch(map,   
+            { renderOptions:{map: map, autoViewport: true}});      
+		local.searchNearby(myKeys, address);   
+		console.log(address);
+	});
+	geolocationControl.addEventListener("locationError",function(e){
+	    // 定位失败事件
+	    alert(e.message);
+	});
+	map.addControl(geolocationControl);
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			var mk = new BMap.Marker(r.point);
+			map.addOverlay(mk);
+			map.panTo(r.point);
+			//alert('您的位置：'+r.point.lng+','+r.point.lat);
+			addj=r.point.lng;
+			addw=r.point.lat;
+			console.log(addj);
+			var point = new BMap.Point(addj,addw);
+			var local = new BMap.LocalSearch(map,   
+            	{ renderOptions:{map: map, autoViewport: true}});      
+			local.searchNearby(myKeys, point);
+			map.centerAndZoom(point, 15);
+		}
+		else {
+			alert('failed'+this.getStatus());
+		}        
+	});
+	//var point = new BMap.Point(addj,addw);  // 创建点坐标  
+	console.log(addj);
+	console.log(point);
+	map.centerAndZoom(point, 15);   // 初始化地图，设置中心点坐标和地图级别
+	
+//	var ppoint;   //用自动定位经纬度逆解析地址描述，地点太小没有描述
+//	// 创建地理编码实例      
+//	var myGeo = new BMap.Geocoder();      
+//	// 根据坐标得到地址描述    
+//	myGeo.getLocation(point, function(result){      
+//	    if (result){      
+//	    ppoint=result.address;      
+//	    }      
+//	});
+//	var local = new BMap.LocalSearch(map,   
+//          { renderOptions:{map: map, autoViewport: true}});      
+//	local.searchNearby(myKeys, ppoint);   
+	
+	var local = new BMap.LocalSearch(map,   
+            { renderOptions:{map: map, autoViewport: true}});      
+	local.searchNearby(myKeys, point);
+</script>
+
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/jquery-ui/1.9.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="lib/jquery.SuperSlide/2.1.1/jquery.SuperSlide.min.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.min.js"></script>
+<script>
+//弹窗
+function modaldemo(){
+	$("#modal-demo").modal("show");
+}
+//消息框
+function modalalertdemo(){
+	$.Huimodalalert('我是消息框，2秒后我自动滚蛋！',2000);
+}
+$(function(){
+	$(".input-text,.textarea").Huifocusblur();
+	
+	//幻灯片
+	jQuery("#slider-3 .slider").slide({mainCell:".bd ul",titCell:".hd li",trigger:"click",effect:"leftLoop",autoPlay:true,delayTime:700,interTime:3000,pnLoop:false,titOnClassName:"active"});
+	
+	$(".panel").Huifold({
+		titCell:'.panel-header',
+		mainCell:'.panel-body',
+		type:1,
+		trigger:'click',
+		className:"selected",
+		speed:"first",
+	});
+	
+	//邮箱提示	
+	$("#email").emailsuggest();
+	
+	//checkbox 美化
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	//日期插件
+	$("#datetimepicker").datetimepicker({
+    	format: 'yyyy-mm-dd',
+		minView: "month",
+		todayBtn:  1,
+		autoclose: 1,
+		endDate : new Date()
+	}).on('hide',function(e) {
+		//此处可以触发日期校验。
+	});
+	
+	/*+1 -1效果*/
+	$("#spinner-demo").Huispinner({
+		value:1,
+		minValue:1,
+		maxValue:99,
+		dis:1
+	});
+	
+	$(".textarea").Huitextarealength({
+		minlength:10,
+		maxlength:200.
+	});
+	
+	$("#demoform").validate({
+		rules:{
+			email:{
+				required:true,
+				email:true,
+			},
+			username:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			telephone:{
+				required:true,
+				isMobile:true,
+			},
+			password:{
+				required:true,
+				isPwd:true,
+			},
+			password2:{
+				required:true,
+				equalTo: "#password"
+			},
+			sex:{
+				required:true,
+			},
+			datetimepicker:{
+				required:true,	
+			},
+			checkbox2:{
+				required:true,
+			},
+			city:{
+				required:true,
+			},
+			website:{
+				required:true,
+				url:true,
+			},
+			beizhu:{
+				maxlength:500,
+			}
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$("#modal-shenqing-success").modal("show");
+			$(form).ajaxSubmit();
+		}
+	});
+
+	//选项卡
+	$("#HuiTab-demo1").Huitab({
+		index:0
+	});
+	
+	$("#Huitags-demo1").Huitags();
+	
+	//返回顶部
+	$.Huitotop();
+	
+	//hover效果
+	$('.maskWraper').Huihover();
+	
+	//星级评价
+	$("#star-1").raty({
+		hints: ['1','2', '3', '4', '5'],//自定义分数
+		starOff: 'iconpic-star-S-default.png',//默认灰色星星
+		starOn: 'iconpic-star-S.png',//黄色星星
+		path: 'static/h-ui/images/star',//可以是相对路径
+		number: 5,//星星数量，要和hints数组对应
+		showHalf: true,
+		targetKeep : true,
+		click: function (score, evt) {//点击事件
+			//第一种方式：直接取值
+			$("#result-1").html('你的评分是'+score+'分');
+		}
+	});
+
+	$( ".ui-sortable" ).sortable({
+		//connectWith: ".panel",
+		items:".panel",
+		handle: ".panel-header",
+		//delay: 300, //时间延迟
+		//distance: 15, //距离延迟
+		placeholder: "ui-state-highlight", //占位符样式
+		update: function(event, ui){
+			
+		}
+	}).disableSelection();
+
+ 	var _bodyHeight = $(window).height();
+	var _doch = $(document).height();
+	$(".containBox").height(_bodyHeight);
+
+	/*左右滑动菜单*/
+    $(".JS-nav-toggle").click(function() {
+		$("body").addClass('sideBox-open');
+        $(".containBox-bg").height(_bodyHeight).show();
+    });
+    $(".containBox-bg").click(function() {
+		$(this).hide();
+		$("body").removeClass('sideBox-open');
+    });
+});
+</script>
+	</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>专家个人资料</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="css/hui.css" />
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/feedback.css" />
+		<style>
+			.mui-table-view span.mui-pull-right {
+				color: #999;
+			}
+			.mui-navbar .mui-btn-nav {
+				-webkit-transition: none;
+				transition: none;
+				-webkit-transition-duration: .0s;
+				transition-duration: .0s;
+		</style>
+	</head>
+	<body>
+		<div id="account" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" onclick="back1()">
+					<span class="mui-icon mui-icon-left-nav"></span>返回
+				</button>
+				<h1 class="mui-center mui-title">个人资料</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+							<a id="head" class="mui-navigate-right">头像
+								<span class="mui-pull-right head">
+									<img class="head-img mui-action-preview" id="head-img1" src=""/>
+								</span>
+							</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>账号<span class="mui-pull-right" id="zhanghao2">无</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>姓名<span class="mui-pull-right" id="xingming">无</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>性别<span class="mui-pull-right" id="sex">无</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>年龄<span class="mui-pull-right" id="age">无</span></a>
+							</li>
+							
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a>手机号<span class="mui-pull-right" id="shoujihao">无</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>邮箱<span class="mui-pull-right" id="youxiangdizhi">无</span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a>职称<span class="mui-pull-right" id="zhicheng">无</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	<script type="text/javascript" src="js/hui.js"></script>
+	<script src="js/mui.min.js "></script>
+	<script src="js/mui.view.js "></script>
+	<script src='js/feedback.js'></script>
+	<!--专家个人资料信息载入-->
+	<script>
+				var obj2=JSON.parse(localStorage.getItem('obj7')).name7;
+        		var num=document.getElementById("xingming");
+        		num.innerText=obj2.name;
+        		var obj3=document.getElementById("zhanghao2");
+				obj3.innerText=JSON.parse(localStorage.getItem('obj')).name;
+				var obj6=document.getElementById("age");
+				obj6.innerText=obj2.age;
+				var obj4=document.getElementById("sex");
+				if(obj2.sex==1){
+					obj4.innerText="男";
+				}else if(obj2.sex==0){
+					obj4.innerText="女";
+				}else{
+					obj4.innerText="无";
+				}
+        		var tele=document.getElementById("shoujihao");
+        		tele.innerText=obj2.phone;
+        		var em=document.getElementById("youxiangdizhi");
+        		em.innerText=obj2.mailbox;
+        		var zc=document.getElementById("zhicheng");
+        		zc.innerText=obj2.zhicheng;
+	function back1(){
+		window.location.href="3.html"
+	}
+	</script>
+	</body>
+</html>

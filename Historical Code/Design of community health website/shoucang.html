@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>文章收藏</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/center1.css" />
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/hui1.css" />
+		<link rel="stylesheet" type="text/css" href="css/icons-extra.css">
+		<style>
+			h5 {
+				margin: 5px 7px;
+			}
+			#biao{
+				position: absolute;
+				top: 10px;
+				left: 36%;
+			}
+			.hehe{
+				position: absolute;
+				top: 5px;
+				left: 0%;
+			}
+			#headimg{
+				position: relative;
+				left: 28%;
+			}
+			#dianzan{
+				position: relative; 
+				bottom: -4px;
+			}
+			#headimg{
+				margin-top:-14px ;
+				margin-left: -45px;
+				margin-bottom: 5px;
+				display:none;
+			}
+			#biaoti{
+				text-align: center;
+				font-size: large;
+			}
+			.ys{
+				margin-top: 40px;
+			}
+			.bj{
+				width: 500px;
+				
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">文章收藏</h1>
+		</header>
+		<div class="mui-content">
+			<div class="hui-wrap mui-content">
+    				<div id="refreshContainer" class="hui-refresh">
+        				<div class="hui-refresh-icon"></div>
+        					<div class="hui-refresh-content">
+            					<ul id="OA_task_1" class="mui-table-view haha">
+								</ul>
+       	 					</div>
+    					</div>
+					</div>
+			
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/hui.js"></script>
+		<script type="text/javascript" src="js/hui-refresh-load-more.js"></script>
+		<script>
+			mui.init();
+			(function($) {
+				//$.swipeoutOpen(el,direction)//打开指定列的滑动菜单，el:指定列的dom对象，direction：取值left|right，指定打开的是左侧或右侧滑动菜单
+				//$.swipeoutClose(el);//关闭指定列的滑动菜单，el:指定列的dom对象
+				//				setTimeout(function() {
+				//					$.swipeoutOpen(document.getElementById("OA_task_1").querySelector('li:last-child'), 'left');
+				//					setTimeout(function() {
+				//						$.swipeoutClose(document.getElementById("OA_task_1").querySelector('li:last-child'));
+				//					}, 1000);
+				//				}, 1000);
+				//第一个demo，拖拽后显示操作图标，点击操作图标删除元素；
+				$('#OA_task_1').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					var li = elem.parentNode.parentNode;
+					mui.confirm('确认删除该条记录？', '养生专家', btnArray, function(e) {
+						if (e.index == 0) {
+							li.parentNode.removeChild(li);
+							mui.post('http://119.29.155.20/apphoutai/collectnew.php',{
+							username:JSON.parse(localStorage.getItem('obj')).name,
+							id:elem.getAttribute("name"),
+							flag:0
+						},function(data){},'json');
+						} else {
+							setTimeout(function() {
+								$.swipeoutClose(li);
+							}, 0);
+						}
+					});
+				});
+				var btnArray = ['确认', '取消'];
+			})(mui);
+		</script>
+<!--//推荐界面下拉刷新-->
+<script type="text/javascript">
+	
+hui.refresh('#refreshContainer', refresh);
+//下拉刷新
+function refresh(){
+    hui.loading('加载中...');
+    hui.post(
+        'http://119.29.155.20/apphoutai/listcollect.php',
+        {username:JSON.parse(localStorage.getItem('obj')).name},
+        function(msg){
+            //判断加载完毕
+            console.log(msg);
+            var obj2 = JSON.parse(msg);
+            hui.closeLoading();
+            var html = '';
+            for(var i = 0; i < obj2.length; i++){
+                html +='<li class="mui-table-view-cell">'+
+					'<div class="mui-slider-right mui-disabled">'+
+						'<a class="mui-btn mui-btn-red" id="'+i+'">取消收藏</a>'+
+					'</div>'+
+					'<div class="mui-slider-handle"><p style="text-decoration: none;" name="'+obj2[i].id+'" id="x'+i+'"></p></div>'+
+				'</li>'
+            }
+            hui('#OA_task_1').html(html);
+            //结束刷新
+            hui.endRefresh();
+            //重置加载更多状态
+            hui.resetLoadMore();
+            for(var i=0;i<obj2.length;i++){
+            	var ne=document.getElementById(i);
+            	ne.name=obj2[i].id;
+            	var cont=document.getElementById("x"+i);
+            	cont.innerText=obj2[i].title;
+            }
+            
+        },
+        function(e){});
+}
+mui(".haha").on("tap","p",function(e){
+				mui.openWindow({
+         			id: 'news2.html',
+         			url: 'news2.html',
+         		show: {
+                	aniShow: 'pop-in'
+          		},
+           		extras: {    //extras里面的就是参数了
+                	name: this.getAttribute("name")
+           		},
+           		waiting: {
+                 	autoShow: true, //自动显示等待框，默认为true
+           		}
+			});
+			});
+</script>
+</body>
+</html>

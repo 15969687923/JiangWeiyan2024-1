@@ -1,0 +1,31 @@
+#registers{
+	background: url(../img/注册壁纸.JPG);
+}
+table{
+	position: absolute;
+	top: 10%;
+	left: 0%;
+	width: 100%;
+}
+table td{
+	width: 19%;
+	text-align: right;
+	padding-right: 2%;
+}
+#submit{
+	width: 30%;
+	margin-right: 33%;
+}
+#nav a{
+	color: white;
+	text-decoration: none;
+	
+}
+#nav{
+	background-color: #5EB95E;
+	color: white;
+	height: 6%;
+}
+#zhaohui{
+	background-color: rgb(237,238,241);
+}

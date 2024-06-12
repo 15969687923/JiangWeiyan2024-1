@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>新闻推荐资料卡</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min1.css">
+		<link rel="stylesheet" href="css/Button.css">
+		<link rel="stylesheet" type="text/css" href="css/hui.css" />
+		<style>
+			#newstitle{
+				position: absolute;
+				left: 10px;
+				bottom: 0px;
+				top: 0px;
+				right: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">推荐资讯卡</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<div class="mui-media-body">
+						<h4 id="newstitle"></h4>
+					</div>
+				</div>
+				<div class="mui-card-content" >
+					<div class="mui-content-padded">
+					<p id="newscontent"></p>
+					<p id="newser" style="float: left;"></p>
+					<p id="newstime" style="float: right;"></p>
+					</div>
+				</div>
+				<br /><br />
+				<div class="mui-card-footer">
+					<div>
+						<a class="mui-card-link" style="color: #007AFF;" id="sc" name="" onclick="shouchang()">加入收藏</a>
+					</div>
+					<a class="mui-card-link" style="color: #007AFF;" id="lxzj" name="" onclick="liaotian()">联系作者</a>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="html5plus://ready"/>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript" src="js/hui.js"></script>
+		<script>
+			//新闻详情信息载入
+				mui.plusReady(function() {
+					var objnum;
+	                objnum = plus.webview.currentWebview().name;
+		        	var obj2=JSON.parse(JSON.parse(localStorage.getItem('news')).info);
+		        	var title=document.getElementById("newstitle");
+					title.innerText=obj2[parseInt(objnum)].title;
+		      		var content=document.getElementById("newscontent");
+		      		content.innerText=obj2[parseInt(objnum)].content;
+		      		var name=document.getElementById("newser");
+					name.innerText=obj2[parseInt(objnum)].name;
+					var times=document.getElementById("newstime");
+					times.innerText=obj2[parseInt(objnum)].times;
+					localStorage.setItem('iD', JSON.stringify({ num:obj2[parseInt(objnum)].id}));
+				});
+				var flag1=0;
+				var nu=plus.webview.currentWebview().name;
+				hui.post('http://119.29.155.20/apphoutai/listcollect.php',
+				{username:JSON.parse(localStorage.getItem('obj')).name},
+				function(msg){
+							console.log(msg);
+							var da=JSON.parse(msg);
+							var obj2=JSON.parse(JSON.parse(localStorage.getItem('news')).info);
+							for(var i=0;i<da.length;i++){
+								if(da[i].id==obj2[parseInt(nu)].id){
+									document.getElementById("sc").innerText="取消收藏";
+									flag1=1;
+								}
+							}
+						},function(e){});
+				//收藏功能
+				function shouchang(e){
+					if(flag1==0){
+						document.getElementById("sc").innerText="取消收藏";
+						hui.alert("收藏成功！");
+						flag1=1;
+						mui.post('http://119.29.155.20/apphoutai/collectnew.php',{
+							username:JSON.parse(localStorage.getItem('obj')).name,
+							id:JSON.parse(localStorage.getItem('iD')).num,
+							flag:1
+						},function(data){},'json');
+					}else{
+						document.getElementById("sc").innerText="加入收藏";
+						hui.alert("取消成功！");
+						flag1=0;
+						mui.post('http://119.29.155.20/apphoutai/collectnew.php',{
+							username:JSON.parse(localStorage.getItem('obj')).name,
+							id:JSON.parse(localStorage.getItem('iD')).num,
+							flag:0
+						},function(data){},'json');
+					}
+				}
+		</script>
+		<!--联系作者-->
+		<script>
+				function liaotian(e){
+					mui.openWindow({
+                    url: 'im-chat.html',
+                    id: 'extras',
+                    extras: {
+                        name:0
+                    },
+                    waiting: {
+                        autoShow: true
+                    }
+                });
+				}
+		</script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			
+		</script>
+	</body>
+</html>

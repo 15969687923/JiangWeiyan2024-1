@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>食材资料卡</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min1.css">
+		<link rel="stylesheet" href="css/Button.css">
+		<style>
+			h5 {
+				margin: 5px 7px;
+			}
+			#biao{
+				position: absolute;
+				top: 10px;
+				left: 36%;
+			}
+			.hehe{
+				position: absolute;
+				top: 5px;
+				left: 0%;
+			}
+			#headimg{
+				position: relative;
+				left: 28%;
+			}
+			#dianzan{
+				position: relative; 
+				bottom: -4px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">食材资料卡</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<!--<img src="images/logo.png" id="toux" />-->
+					<div class="mui-media-body">
+						<h3 id="xingming"></h3>
+						<!--<p><span id="zhicheng"></span></p>-->
+					</div>
+				</div>
+				<div class="mui-card-content" >
+					<div class="mui-content-padded">
+					<p>
+					介绍:
+					</p>
+					<p id="jianjie"></p>
+					</div>
+				</div>
+				<!--<div class="mui-card-footer">
+					<div>
+						<a id="dianzan" onclick="dian()"><img src="img/dianzhan.png" id="zan"  width="20px" /></a>&nbsp;
+						<span class="mui-badge mui-badge-success" id="sm">0</span>
+					</div>
+					<a class="mui-card-link" id="lxzj" name="" onclick="liaotian()">联系专家</a>
+				</div>-->
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/hui.js"></script>
+<!--通过页面传值把数据传入页面-->
+<script>
+	mui.plusReady(function() {
+                var value = plus.webview.currentWebview().keyword;
+                console.log(value);
+                hui.post(
+	    			'http://119.29.155.20/apphoutai/zjandgo.php',
+	    			{se:value},
+	    		function(msg){
+	        		console.log(msg);
+	        		var obj2=JSON.parse(msg);
+	        		console.log(obj2[0].name);
+				mui.plusReady(function() {
+
+	        		var num=document.getElementById("xingming");
+	        		num.innerText=obj2[0].name;
+	        		
+					var jianjie1=document.getElementById("jianjie");
+					jianjie1.innerText=obj2[0].detail;
+				
+	        	},
+	    		function(e){
+	        		hui.iconToast('读取消息失败', 'warn');
+				});
+            });
+		});
+	
+
+</script>
+
+
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			
+		</script>
+	</body>
+</html>

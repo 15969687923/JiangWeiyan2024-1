@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>发新闻</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min1.css">
+		<link rel="stylesheet" href="css/Button.css">
+		<style>
+			h5 {
+				margin: 5px 7px;
+			}
+			#biao{
+				position: absolute;
+				top: 10px;
+				left: 36%;
+			}
+			.hehe{
+				position: absolute;
+				top: 5px;
+				left: 0%;
+			}
+			#headimg{
+				position: relative;
+				left: 28%;
+			}
+			#dianzan{
+				position: relative; 
+				bottom: -4px;
+			}
+			#headimg{
+				margin-top:-14px ;
+				margin-left: -45px;
+				margin-bottom: 5px;
+				display:none;
+			}
+			#biaoti{
+				text-align: center;
+				font-size: large;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">写新闻</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label id="biaoti">标题</label>
+						<input type="text" class="mui-input-clear" id="bt" placeholder="请输入标题">
+					</div>
+					<div></div>
+				</form>
+				<div class="mui-card-content">
+					<p></p>
+					<textarea  rows="14" id="nr" placeholder="请输入内容"></textarea>
+					<div><img id="headimg" src=''  height="80px" width="250px" ></div>
+				</div>
+				<div class="mui-card-footer">
+					<a class="mui-card-link" id="fsxw" name="">发送</a>
+					<a href="javascript:;"  class="imageup">上传图片</a>
+					<a class="mui-card-link" id="qx" name="">取消</a>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/hui.js"></script>
+		<script>
+			mui("body").on("tap","#fsxw",function(){  
+                    upload();
+               });
+		</script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+		</script>
+		<script>  
+            var obj = JSON.parse(localStorage.getItem('obj'));
+            function plusReady(){  
+                // 弹出系统选择按钮框  
+                mui("body").on("tap",".imageup",function(){  
+                    page.imgUp();  
+                })  
+                  
+            }  
+            var page=null;  
+            page={  
+                imgUp:function(){  
+                    var m=this;  
+                    plus.nativeUI.actionSheet({cancel:"取消",buttons:[  
+                        {title:"拍照"},  
+                        {title:"从相册中选择"}  
+                    ]}, function(e){//1 是拍照  2 从相册中选择  
+                        switch(e.index){  
+                            case 1:appendByCamera();break;  
+                            case 2:appendByGallery();break;  
+                        }  
+                    });  
+                }  
+                //摄像头  
+            }  
+              
+            // 拍照添加文件
+            function appendByCamera(){
+                plus.camera.getCamera().captureImage(function(e){
+                    console.log(e);
+                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+                    var path = entry.toLocalURL(); 
+                    document.getElementById("headimg").src = path;
+                    document.getElementById("headimg").style.display="block";
+                    //就是这里www.bcty365.com 
+                    }, function(e) { 
+                        mui.toast("读取拍照文件错误：" + e.message); 
+                    }); });    
+            }
+            // 从相册添加文件
+            function appendByGallery(){
+                plus.gallery.pick(function(path){
+                    document.getElementById("headimg").src = path; 
+					document.getElementById("headimg").style.display="block";
+                });
+            }
+            //服务端接口路径
+            var server = "http://119.29.155.20/apphoutai/uploadnews.php";
+            //获取图片元素
+            var files = document.getElementById('headimg');
+            
+            // 上传文件
+            function upload(){
+            	var tit=document.getElementById("bt").value;
+            	var cont=document.getElementById("nr").value;
+            	mui.post(
+            		'http://119.29.155.20/apphoutai/insertnews.php',
+            		{username:JSON.parse(localStorage.getItem('obj')).name,title:tit,content:cont},
+            		function(msg){}
+            	);
+                console.log(files.src);
+                var wt=plus.nativeUI.showWaiting();
+                var task=plus.uploader.createUpload(server,
+                    {method:"POST"},
+                    function(t,status){ //上传完成
+                    	if(status==200){
+                            alert("上传成功："+t.responseText);
+                            wt.close(); //关闭等待提示按钮
+                        }else{
+                            alert("上传失败："+status);
+                            wt.close();//关闭等待提示按钮
+                        }
+                    }
+                );
+                //添加其他参数
+                var obj = JSON.parse(localStorage.getItem('obj'));
+                task.addData("username",obj.name);
+                task.addFile(files.src,{key:"dddd"});
+                task.start();  
+            } 
+            if(window.plus){  
+                plusReady();  
+            }else{  
+                document.addEventListener("plusready",plusReady,false);  
+            }    
+        </script>
+	</body>
+</html>

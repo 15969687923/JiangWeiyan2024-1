@@ -1,0 +1,15 @@
+.newser{
+	float: left;
+	text-decoration: none;
+}
+.newstime{
+	float: right;
+}
+.newscontent{
+	height: auto;
+	width: 100%;
+	 word-wrap: break-word;
+	 word-break: normal;
+	 white-space:normal;
+	 text-decoration: none;
+}
