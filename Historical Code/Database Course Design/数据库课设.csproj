@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{19CCB7CB-01C0-4C25-AD0F-367C41FBDE68}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>数据库课设</RootNamespace>
+    <AssemblyName>数据库课设</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="商品查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="商品查询.Designer.cs">
+      <DependentUpon>商品查询.cs</DependentUpon>
+    </Compile>
+    <Compile Include="管理员信息修改.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="管理员信息修改.Designer.cs">
+      <DependentUpon>管理员信息修改.cs</DependentUpon>
+    </Compile>
+    <Compile Include="顾客退货.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="顾客退货.Designer.cs">
+      <DependentUpon>顾客退货.cs</DependentUpon>
+    </Compile>
+    <Compile Include="供应商管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="供应商管理.Designer.cs">
+      <DependentUpon>供应商管理.cs</DependentUpon>
+    </Compile>
+    <Compile Include="管理员.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="管理员.Designer.cs">
+      <DependentUpon>管理员.cs</DependentUpon>
+    </Compile>
+    <Compile Include="进货管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="进货管理.Designer.cs">
+      <DependentUpon>进货管理.cs</DependentUpon>
+    </Compile>
+    <Compile Include="普通员工.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="普通员工.Designer.cs">
+      <DependentUpon>普通员工.cs</DependentUpon>
+    </Compile>
+    <Compile Include="超市进销存系统.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="超市进销存系统.Designer.cs">
+      <DependentUpon>超市进销存系统.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="进货提醒.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="进货提醒.Designer.cs">
+      <DependentUpon>进货提醒.cs</DependentUpon>
+    </Compile>
+    <Compile Include="销售统计.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="销售统计.Designer.cs">
+      <DependentUpon>销售统计.cs</DependentUpon>
+    </Compile>
+    <Compile Include="超市退货.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="超市退货.Designer.cs">
+      <DependentUpon>超市退货.cs</DependentUpon>
+    </Compile>
+    <Compile Include="商品销售.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="商品销售.Designer.cs">
+      <DependentUpon>商品销售.cs</DependentUpon>
+    </Compile>
+    <Compile Include="普通员工信息修改.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="普通员工信息修改.Designer.cs">
+      <DependentUpon>普通员工信息修改.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据库课设DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>数据库课设DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="数据库课设DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>数据库课设DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="数据库课设DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>数据库课设DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="数据库课设DataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>数据库课设DataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="数据库课设DataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>数据库课设DataSet4.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="商品查询.resx">
+      <DependentUpon>商品查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="普通员工信息修改.resx">
+      <DependentUpon>普通员工信息修改.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="管理员信息修改.resx">
+      <DependentUpon>管理员信息修改.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="顾客退货.resx">
+      <DependentUpon>顾客退货.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="供应商管理.resx">
+      <DependentUpon>供应商管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="管理员.resx">
+      <DependentUpon>管理员.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="进货管理.resx">
+      <DependentUpon>进货管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="普通员工.resx">
+      <DependentUpon>普通员工.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="超市进销存系统.resx">
+      <DependentUpon>超市进销存系统.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="进货提醒.resx">
+      <DependentUpon>进货提醒.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="销售统计.resx">
+      <DependentUpon>销售统计.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="超市退货.resx">
+      <DependentUpon>超市退货.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="商品销售.resx">
+      <DependentUpon>商品销售.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="数据库课设DataSet.xsc">
+      <DependentUpon>数据库课设DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="数据库课设DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>数据库课设DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="数据库课设DataSet.xss">
+      <DependentUpon>数据库课设DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="数据库课设DataSet1.xsc">
+      <DependentUpon>数据库课设DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="数据库课设DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>数据库课设DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="数据库课设DataSet1.xss">
+      <DependentUpon>数据库课设DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="数据库课设DataSet2.xsc">
+      <DependentUpon>数据库课设DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="数据库课设DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>数据库课设DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="数据库课设DataSet2.xss">
+      <DependentUpon>数据库课设DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="数据库课设DataSet3.xsc">
+      <DependentUpon>数据库课设DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="数据库课设DataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>数据库课设DataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="数据库课设DataSet3.xss">
+      <DependentUpon>数据库课设DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="数据库课设DataSet4.xsc">
+      <DependentUpon>数据库课设DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="数据库课设DataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>数据库课设DataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="数据库课设DataSet4.xss">
+      <DependentUpon>数据库课设DataSet4.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
