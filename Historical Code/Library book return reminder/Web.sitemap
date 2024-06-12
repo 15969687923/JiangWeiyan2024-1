@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="index.aspx" title="首页"  description="首页导航">
+    <siteMapNode url="#" title="学院介绍"  description="" />
+    <siteMapNode url="1118" title="新闻中心"  description="" />
+    <siteMapNode url="1119" title="教学科研"  description="" />
+    <siteMapNode url="1120" title="信息中心"  description="" />
+    <siteMapNode url="1113" title="主题设置"  description="" />
+    <siteMapNode url="1114" title="图书查询"  description="" >
+    <siteMapNode url="browse.aspx" title="分类浏览"  description="图书浏览" />
+    <siteMapNode url="likeserach.aspx" title="关键查询"  description="图书关键字查询" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

@@ -1,0 +1,131 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style type="text/css">
+        .auto-style1 {
+            float: left;
+            width: 25%;
+            height: 75%;
+        }
+    </style>
+
+</head>
+<body style="padding:0px;margin:0px;background-color:rgb(211, 216, 222);height:auto;" >
+    <form id="form1" runat="server" >
+
+    <div style="margin: 0 auto ;padding-top:25px;width:1070px;min-width:1070px">
+        <header class ="head">
+            <h1 style="width:8em;margin:auto;color:cadetblue;font-family:YouYuan;font-size:50px;">图书管理系统</h1>
+            <div style="float:right;margin-left:3px;margin-top:39px">
+                <asp:Button  runat ="server" ID="searchB" Text="搜索" Height="25px" BackColor="#990000"   BorderWidth="0px" ForeColor="White"/>
+            </div>
+            <div style="float:right; position:relative;display:inline-block;">
+                <div style="margin-top:35px;float:right;">
+                     <asp:TextBox ID="STB"  CssClass="searchTB" BorderStyle="Groove" runat ="server"  placeholder="搜索"  ></asp:TextBox>
+                </div>
+                <div style="position:absolute;right:0px;margin-top:39px">
+                    <asp:Image runat ="server"  ImageUrl="masterpage_images/放大镜.png" Width=25px Height="25px"  />
+                </div>
+            </div>
+        </header>
+
+        <nav class="menuBar">
+            <div class="menuBar_div1" ><a href="index.aspx"  class="a1">图书馆介绍</a></div>
+            <div class="menuBar_div7" ><a href="browse.aspx"  class="a1">分类检索</a></div>
+            <div class="menuBar_div8" ><a href="likeserach.aspx"  class="a1">书名检索</a></div>
+            <%--<div class="menuBar_div9" >更改主题：</div>
+            <div class="menuBar_div10">
+                <asp:DropDownList CssClass="DDL_style" runat="server" ID="DDL" OnSelectedIndexChanged="DDL_changed" AutoPostBack="true">
+                    <asp:ListItem Selected="True" Text="橘黄" />
+                    <asp:ListItem Text="白色" />
+                </asp:DropDownList>
+            </div>--%>
+        </nav>
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="true" />
+        <div >
+            <div class="content" >
+                <div class="backgroundpicture">
+                  <asp:Image runat ="server" width="100%"  ImageUrl="masterpage_images/background_picture.jpg" />
+                </div>
+                <div class="auto-style1">
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="~/index.aspx" OnLoggingOut="LoginStatus1_LoggingOut" />
+                    <br />
+                    <asp:LoginView ID="LoginView1" runat="server">
+                        <AnonymousTemplate>
+                            您尚未登录<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Register.aspx">注册</asp:HyperLink>
+                            <br /> 如需其他功能请登录<asp:TreeView ID="treeT" runat="server" OnSelectedNodeChanged="treeT_SelectedNodeChanged" Height="326px">
+                                <Nodes>
+                                    <asp:TreeNode Expanded="True" NavigateUrl="index.aspx" Text="图书馆介绍"></asp:TreeNode>
+                                    <asp:TreeNode Expanded="True" NavigateUrl="#" Text="用户功能">
+                                        <asp:TreeNode NavigateUrl="#" Text="馆藏书查询">
+                                            <asp:TreeNode NavigateUrl="likeserach.aspx" Text="书名检索"></asp:TreeNode>
+                                            <asp:TreeNode NavigateUrl="browse.aspx" Text="分类检索"></asp:TreeNode>
+                                        </asp:TreeNode>
+                                    </asp:TreeNode> 
+                                </Nodes>
+                            </asp:TreeView>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            您已登录<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/MemberPages/ChangePassword.aspx">修改密码</asp:HyperLink>
+                            <br /> 欢迎您<asp:LoginName ID="LoginName1" runat="server" />
+                            <br />
+                            <asp:TreeView ID="treeT" runat="server" OnSelectedNodeChanged="treeT_SelectedNodeChanged">
+                                <Nodes>
+                                    <asp:TreeNode  NavigateUrl="index.aspx" Text="图书馆介绍" Expanded="True"></asp:TreeNode>
+                                    <asp:TreeNode  NavigateUrl="#" Text="用户功能" Expanded="True">
+                                        <asp:TreeNode NavigateUrl="#" Text="馆藏书查询">
+                                            <asp:TreeNode NavigateUrl="likeserach.aspx" Text="书名检索"></asp:TreeNode>
+                                            <asp:TreeNode NavigateUrl="browse.aspx" Text="分类检索"></asp:TreeNode>
+                                        </asp:TreeNode>
+                                        <asp:TreeNode NavigateUrl="borbook.aspx" Text="借书"></asp:TreeNode>
+                                        <asp:TreeNode NavigateUrl="repbook.aspx" Text="还书"></asp:TreeNode>
+                                        <asp:TreeNode NavigateUrl="borrowed.aspx" Text="已借书查看"></asp:TreeNode>
+                                        <asp:TreeNode NavigateUrl="personmes.aspx" Text="个人信息修改"></asp:TreeNode>
+                                    </asp:TreeNode>
+                                    <asp:TreeNode  NavigateUrl="#" Text="我是管理员" Expanded="True">
+                                        <asp:TreeNode NavigateUrl="#" Text="读者管理">
+                                            <asp:TreeNode NavigateUrl="personadd.aspx" Text="读者管理"></asp:TreeNode>
+                                            <asp:TreeNode NavigateUrl="personsub.aspx" Text="读者销户"></asp:TreeNode>
+                                        </asp:TreeNode>
+                                        <asp:TreeNode NavigateUrl="addbook.aspx" Text="新书入库"></asp:TreeNode>
+                                        <asp:TreeNode NavigateUrl="subbook.aspx" Text="古旧书管理"></asp:TreeNode>
+                                        <asp:TreeNode NavigateUrl="losebook.aspx" Text="书籍丢失处理"></asp:TreeNode>
+                                    </asp:TreeNode>
+                                </Nodes>
+                            </asp:TreeView>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+                <div class="mappath">
+                  <span style ="color:#58748e;font-size:small">当前位置:</span>
+                  <asp:SiteMapPath ID ="SiteMapPath1" runat ="server"  PathSeparator=" | " >
+                     <CurrentNodeStyle ForeColor="#58748e"  Font-Size="Small"/>
+                      <NodeStyle  ForeColor="#58748e"  Font-Underline="false" Font-Size="Small" />
+                      <PathSeparatorStyle  ForeColor="#58748e"  Font-Size="Small"/>
+                      <RootNodeStyle  ForeColor="#58748e" Font-Size="Small" />
+                  </asp:SiteMapPath>
+                   <span style="color:rgb(128, 128, 128)">———————————————————————————————————————————————</span> 
+                </div>
+                <div class="contentMain">
+                  <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                  </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <footer class="foot"  >
+           <span style="font-size:small;padding-left:10px"> &copy;计科1703 姜维炎 20171222050</span>
+        </footer>
+    </div>
+
+    </form>
+</body>
+</html>
