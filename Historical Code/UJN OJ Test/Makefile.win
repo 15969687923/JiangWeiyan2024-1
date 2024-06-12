@@ -1,0 +1,30 @@
+# Project: 工程1
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = 时间.o $(RES)
+LINKOBJ  = 时间.o $(RES)
+LIBS =  -L"D:/devc/Dev-Cpp/lib"  
+INCS =  -I"D:/devc/Dev-Cpp/include" 
+CXXINCS =  -I"D:/devc/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"D:/devc/Dev-Cpp/include/c++/3.4.2/backward"  -I"D:/devc/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"D:/devc/Dev-Cpp/include/c++/3.4.2"  -I"D:/devc/Dev-Cpp/include" 
+BIN  = 时间.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before 时间.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "时间.exe" $(LIBS)
+
+时间.o: 时间.c
+	$(CC) -c 时间.c -o 时间.o $(CFLAGS)
