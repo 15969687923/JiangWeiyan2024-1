@@ -1,0 +1,54 @@
+#include<stdio.h>//坑爹啊，，，还要考虑小数点后面的无效0和最前面的无效0！！！
+//特特特：小数点！！！ 
+#include<string.h>
+int main(){
+	char a[100000],b[100000];
+	int na,nb,i,j,t;
+	while(scanf("%s%s",a,b)!=EOF){
+		na=strlen(a);
+		nb=strlen(b);
+		while(a[0]=='0'){
+			for(i=0;i<na;i++){
+				a[i]=a[i+1];
+			}	
+		}
+		while(b[0]=='0'){
+			for(i=0;i<nb;i++){
+				b[i]=b[i+1];
+			}	
+		}	
+		na=strlen(a);
+		nb=strlen(b);		
+		for(j=na-1;j>=0;j--){
+			if(a[j]=='.'){
+				for(i=na-1;a[i]!='.';i--){
+					if((a[i]-48)==0)
+						a[i]='\0';
+					else
+						break;
+				} 
+				if(i==j)
+					a[i]='\0';				
+				break;
+			}
+		}
+		for(j=nb-1;j>=0;j--){
+			if(b[j]=='.'){
+				for(i=nb-1;b[i]!='.';i--){
+					if((b[i]-48)==0)
+						b[i]='\0';
+					else
+						break;
+				} 
+				if(i==j)
+					b[i]='\0';
+				break;
+			}
+		}
+		if(strcmp(a,b)==0)
+			printf("YES\n");
+		else
+			printf("NO\n"); 
+	}
+	return 0;
+}
